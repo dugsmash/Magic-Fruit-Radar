@@ -140,8 +140,6 @@ The app relies on the following third-party service. **No free alternatives with
 |---|---|---|
 | **Roco Magic Book** — [rocom.shallow.ink](https://rocom.shallow.ink/) | Merchant shelf data, what is on sale each round, plus the item atlas and icons | Paid API key via the `X-API-Key` header. Base URL: `https://wegame.shallow.ink` |
 
-> **Why this service?** The game exposes **no official public API** for the merchant. Community research ranked reliable data sources as: community API → page/protocol polling → OCR → crowd-sourcing. This service is the most reliable, minute-level source available. *Promotion: if you are building anything for Roco Kingdom, their API covers merchant data, wiki and atlas — grab a key at [rocom.shallow.ink](https://rocom.shallow.ink/).*
-
 ---
 
 ## Privacy and Security

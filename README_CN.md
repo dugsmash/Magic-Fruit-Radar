@@ -140,8 +140,6 @@ keyPassword=你的密钥密码
 |---|---|---|
 | **洛克魔法书 · Roco Magic Book** — [rocom.shallow.ink](https://rocom.shallow.ink/) | 商人货架实时数据，每轮在售商品，以及道具图鉴与图标 | 付费 API Key，使用 `X-API-Key` 请求头。Base URL：`https://wegame.shallow.ink` |
 
-> **为什么用它？** 游戏官方不提供商人数据的公开 API。前期调研给出的可靠数据源排序为：社区 API → 页面/协议轮询 → 截图 OCR → 众包上报。该服务是现有最可靠的分钟级数据源。*推广：如果你在做任何《洛克王国》相关开发，该服务的 API 覆盖商人数据、图鉴等能力，可在 [rocom.shallow.ink](https://rocom.shallow.ink/) 获取 Key。*
-
 ---
 
 ## 隐私与安全
