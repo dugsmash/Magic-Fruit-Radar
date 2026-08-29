@@ -4,6 +4,13 @@
 
 > **Your Traveling-Merchant Alarm for Roco Kingdom: World** — add the items you want to your wishlist, and get a system notification with sound and vibration the moment they appear on the in-game merchant's shelf, so you never miss a rare drop again.
 
+<p align="center">
+  <img src="https://img.shields.io/badge/version-v0.3.1-blue" alt="version">
+  <img src="https://img.shields.io/badge/Android-8.0%2B-green" alt="android">
+  <img src="https://img.shields.io/badge/Kotlin-1.9-blueviolet" alt="kotlin">
+  <img src="https://img.shields.io/badge/license-MIT-yellow" alt="license">
+</p>
+
 ---
 
 ## Introduction
