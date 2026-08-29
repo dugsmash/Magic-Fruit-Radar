@@ -48,12 +48,14 @@
 
 ## 📸 Screenshots / 界面预览
 
-| Launch 启动 | Shelf 货架 | Records 记录 | Settings 设置 |
-|---|---|---|---|
-| ![launch](test_shots/01_launch.png) | ![shelf](test_shots/28_final_shelf.png) | ![records](test_shots/31_filtered_records.png) | ![settings](test_shots/33_settings_simplified.png) |
+> Real-device captures (OPPO Find X5), app UI only. 真机实拍截图（OPPO Find X5），仅含应用界面。
 
-> More evidence: see the [test report](roco-merchant-app/TEST_REPORT.md) and the full set of 36 screenshots in [`test_shots/`](test_shots/).
-> 更多测试证据见 [测试报表](roco-merchant-app/TEST_REPORT.md) 与 [`test_shots/`](test_shots/) 下全部 36 张截图。
+| Wishlist 许愿单 | Shelf 货架 | Records 记录 |
+|---|---|---|
+| ![wishlist](test_shots/48_app_wishlist.png) | ![shelf](test_shots/49_app_shelf.png) | ![records](test_shots/50_app_records.png) |
+
+> More evidence: see the [test report](roco-merchant-app/TEST_REPORT.md) and the full set of screenshots in [`test_shots/`](test_shots/).
+> 更多测试证据见 [测试报表](roco-merchant-app/TEST_REPORT.md) 与 [`test_shots/`](test_shots/) 下全部截图。
 
 ---
 
@@ -97,7 +99,7 @@ luoke-market/
 │   ├── index.html · app.js · styles.css
 │   ├── preview.png
 │   └── README.md
-└── test_shots/                               # 🧪 36 test screenshots (emulator + OPPO Find X5)
+└── test_shots/                               # 🧪 Test screenshots (emulator + OPPO Find X5, app UI only)
 ```
 
 > ⚠️ Local-only files excluded from git: `keystore.properties`, `keystore/` (release signing key), `local.properties` (SDK path), Gradle build outputs. **Release APKs of every version are versioned in `dist/`** (each < 50 MB, safe for GitHub).
@@ -250,7 +252,7 @@ The app relies on the following third-party service. **No free alternatives with
 
 ## 🧪 Testing / 测试与验证
 
-Full details in [TEST_REPORT.md](roco-merchant-app/TEST_REPORT.md) (Chinese), 36 evidence screenshots in [`test_shots/`](test_shots/).
+Full details in [TEST_REPORT.md](roco-merchant-app/TEST_REPORT.md) (Chinese), evidence screenshots in [`test_shots/`](test_shots/) (emulator + OPPO Find X5 real device, app UI only).
 
 | Environment / 环境 | Result / 结果 |
 |---|---|

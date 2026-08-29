@@ -391,7 +391,8 @@
 - ✅ APK 内图标资源校验：adaptive icon 引用 `ic_launcher_photo.png`（原图生成的 432px PNG）存在
 - ✅ **OPPO Find X5（PFEM10，Android 16）真机实装验证**（2026-08-29，adb 安装 `RocoMerchant_v0.3.1_release.apk`）：
   - 空矢量前景版本 → 桌面图标显示默认安卓机器人（ColorOS 无法解析）→ 修复为透明路径前景后，桌面图标正常显示手绘魔力果 ✅
-  - 整幅原图铺满版本安装后，应用名「魔力果雷达」与图标均正常显示；应用启动无闪退（截图像素对比见 `test_shots/42_v031_launch.png`、`test_shots/47_v031_drawer2.png`、`test_shots/46_v031_icon_full.png`）
+  - 整幅原图铺满版本安装后，应用名「魔力果雷达」与图标均正常显示；应用启动无闪退
+  - 应用界面真机截图（仅含应用 UI，无系统栏/桌面）：`test_shots/48_app_wishlist.png`（许愿单）、`test_shots/49_app_shelf.png`（货架，含真实 API 缓存货架）、`test_shots/50_app_records.png`（售卖记录）
 - ⏳ 待补验：不同启动器遮罩形状下的图标显示效果
 
 ---
