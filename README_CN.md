@@ -50,53 +50,6 @@ App 内置**全量道具名称图鉴（2500+ 件，完全离线可用）**；道
 
 ---
 
-## 项目结构
-
-```
-luoke-market/
-├── README.md                        # 英文说明
-├── README_CN.md                     # 中文说明（本文件）
-├── roco-merchant-app/               # 原生 Android 应用（Kotlin）
-│   ├── app/
-│   │   ├── src/main/
-│   │   │   ├── java/com/roco/merchant/
-│   │   │   │   ├── MainActivity.kt            # 单 Activity 宿主
-│   │   │   │   ├── data/                      # API 客户端、图鉴、偏好、数据模型
-│   │   │   │   │   ├── MerchantApi.kt         # 商人货架 API 客户端
-│   │   │   │   │   ├── WikiItemsApi.kt        # 道具图鉴/图标 API 客户端
-│   │   │   │   │   ├── AtlasRepository.kt     # 图鉴同步（分页、限频）
-│   │   │   │   │   └── Prefs.kt               # SharedPreferences 持久化
-│   │   │   │   ├── notify/Notifier.kt         # 通知（声音/震动/免打扰）
-│   │   │   │   ├── ui/                        # 界面：许愿单/货架/记录/设置
-│   │   │   │   ├── util/BatteryOptimizer.kt   # 忽略电池优化辅助
-│   │   │   │   └── worker/                    # WorkManager：检测/守护/开机接收器
-│   │   │   ├── assets/
-│   │   │   │   └── atlas.json                 # 全量道具名称图鉴（离线）
-│   │   │   └── res/                           # 布局、图形、字符串、主题
-│   │   ├── build.gradle.kts                   # 应用模块配置（v0.3.1 · versionCode 11）
-│   │   └── proguard-rules.pro
-│   ├── build.gradle.kts                       # 根构建（AGP 8.5.2，Kotlin 1.9.24）
-│   ├── settings.gradle.kts
-│   ├── gradle/ gradlew/ gradlew.bat           # Gradle 8.14.5 包装器
-│   ├── dist/                                  # 各版本正式签名 APK（0.2.5 → 0.3.1）
-│   │   ├── MagicFruitRadar_v0.2.5_release.apk
-│   │   ├── MagicFruitRadar_v0.2.6_release.apk
-│   │   ├── MagicFruitRadar_v0.2.7_release.apk
-│   │   ├── MagicFruitRadar_v0.3.0_release.apk # 不含图标；保留道具名称图鉴
-│   │   └── MagicFruitRadar_v0.3.1_release.apk # 更名「魔力果雷达」+ 手绘图标
-│   ├── TEST_REPORT.md                         # 测试报表
-│   └── poster.html                            # 宣传海报（HTML）
-├── magic-fruit-art.png                       # 手绘图标原图
-├── roco-merchant-prototype/                  # 可点击网页原型（零依赖）
-│   ├── index.html · app.js · styles.css
-│   ├── preview.png
-│   └── README.md
-└── test_shots/                               # 测试截图（模拟器 + 真机，仅应用界面）
-```
-
-> 本地私有文件不入库：签名配置 `keystore.properties`、签名文件 `keystore/`、SDK 路径 `local.properties`、构建产物目录。**各版本正式 APK 已纳入版本控制存放于 `dist/`**（单文件 < 50 MB，符合 GitHub 限制）。
-
----
 
 ## 快速开始
 

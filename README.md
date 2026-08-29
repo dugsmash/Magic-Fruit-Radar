@@ -1,6 +1,6 @@
 # Magic Fruit Radar
 
-**[English](README.md) | [Chinese](README_CN.md)**
+**[English](README.md) | [中文](README_CN.md)**
 
 > **Your Traveling-Merchant Alarm for Roco Kingdom: World** — add the items you want to your wishlist, and get a system notification (sound + vibration) the moment they appear on the in-game merchant's shelf, so you never miss a rare drop again.
 
@@ -50,53 +50,6 @@ The app bundles the **full item-name atlas (2,500+ items, works fully offline)**
 
 ---
 
-## Repository Structure
-
-```
-luoke-market/
-├── README.md                        # English README
-├── README_CN.md                     # Chinese README
-├── roco-merchant-app/               # Native Android app (Kotlin)
-│   ├── app/
-│   │   ├── src/main/
-│   │   │   ├── java/com/roco/merchant/
-│   │   │   │   ├── MainActivity.kt            # Single-activity host
-│   │   │   │   ├── data/                      # API clients, atlas, prefs, models
-│   │   │   │   │   ├── MerchantApi.kt         # Merchant shelf API client
-│   │   │   │   │   ├── WikiItemsApi.kt        # Item-atlas / icon API client
-│   │   │   │   │   ├── AtlasRepository.kt     # Atlas sync (paged, rate-limited)
-│   │   │   │   │   └── Prefs.kt               # SharedPreferences persistence
-│   │   │   │   ├── notify/Notifier.kt         # Notifications (sound/vibration/DND)
-│   │   │   │   ├── ui/                        # Fragments: wishlist/shelf/records/settings
-│   │   │   │   ├── util/BatteryOptimizer.kt   # Ignore-battery-optimization helper
-│   │   │   │   └── worker/                    # WorkManager: check/watchdog/boot-receiver
-│   │   │   ├── assets/
-│   │   │   │   └── atlas.json                 # Full item-name atlas (offline)
-│   │   │   └── res/                           # Layouts, drawables, strings, themes
-│   │   ├── build.gradle.kts                   # App module config (v0.3.1 · versionCode 11)
-│   │   └── proguard-rules.pro
-│   ├── build.gradle.kts                       # Root build (AGP 8.5.2, Kotlin 1.9.24)
-│   ├── settings.gradle.kts
-│   ├── gradle/ gradlew/ gradlew.bat           # Gradle 8.14.5 wrapper
-│   ├── dist/                                  # Versioned release APKs (0.2.5 → 0.3.1)
-│   │   ├── MagicFruitRadar_v0.2.5_release.apk
-│   │   ├── MagicFruitRadar_v0.2.6_release.apk
-│   │   ├── MagicFruitRadar_v0.2.7_release.apk
-│   │   ├── MagicFruitRadar_v0.3.0_release.apk # Icons not bundled; atlas names offline
-│   │   └── MagicFruitRadar_v0.3.1_release.apk # Renamed + hand-drawn magic-fruit icon
-│   ├── TEST_REPORT.md                         # Test report
-│   └── poster.html                            # Promotional poster (HTML)
-├── magic-fruit-art.png                       # Hand-drawn icon source art
-├── roco-merchant-prototype/                  # Clickable web prototype (zero-dependency)
-│   ├── index.html · app.js · styles.css
-│   ├── preview.png
-│   └── README.md
-└── test_shots/                               # Test screenshots (emulator + real device, app UI only)
-```
-
-> Local-only files excluded from git: `keystore.properties`, `keystore/` (release signing key), `local.properties` (SDK path), Gradle build outputs. **Release APKs of every version are versioned in `dist/`** (each < 50 MB, safe for GitHub).
-
----
 
 ## Getting Started
 
