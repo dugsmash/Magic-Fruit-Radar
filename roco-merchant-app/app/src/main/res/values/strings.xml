@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">远行商人闹钟</string>
+    <string name="tab_wish">许愿单</string>
+    <string name="tab_catalog">货架</string>
+    <string name="tab_settings">设置</string>
+    <string name="tab_record">记录</string>
+    <string name="notif_channel_name">商人到货提醒</string>
+    <string name="notif_channel_desc">愿望商品出现在远行商人货架时通知</string>
+</resources>

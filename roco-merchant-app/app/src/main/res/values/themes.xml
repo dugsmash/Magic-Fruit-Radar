@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.RocoMerchant.Base" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/purple</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/orange</item>
+        <item name="android:colorBackground">@color/cream</item>
+        <item name="colorSurface">@color/white</item>
+        <!-- 全面屏（OPPO Find X5 等）适配：状态栏/导航栏与界面同色，图标深色清晰可见 -->
+        <item name="android:statusBarColor">@color/cream</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
+    </style>
+    <style name="Theme.RocoMerchant" parent="Theme.RocoMerchant.Base" />
+    <!-- 底部导航文字：选中/未选中同字号，切换 tab 时标签不再放大缩小 -->
+    <style name="NavText" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

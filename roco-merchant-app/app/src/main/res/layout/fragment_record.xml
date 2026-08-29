@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="14dp">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="售卖记录" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/ink" />
+    <TextView android:id="@+id/rareInfo" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:textSize="13sp" android:textColor="#C62828" android:textStyle="bold"
+        android:background="@drawable/bg_status" android:padding="10dp"
+        android:paddingLeft="12dp" android:paddingRight="12dp" android:layout_marginTop="8dp" />
+    <EditText android:id="@+id/recordSearch" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:hint="搜索商品…" android:inputType="text" android:layout_marginTop="10dp"
+        android:textColorHint="#000000"
+        android:background="@drawable/bg_input" android:padding="10dp" android:textSize="14sp" />
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="从首次获取到商人数据起，自动记录每个时间段售卖的商品" android:textSize="12sp"
+        android:textColor="#000000" android:paddingTop="6dp" android:paddingBottom="8dp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recordList" android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:clipToPadding="false" android:paddingBottom="24dp" />
+    <TextView android:id="@+id/recordEmpty"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center" android:padding="36dp"
+        android:text="还没有记录
+获取到第一条远行商人数据后自动开始记录"
+        android:textSize="14sp" android:textColor="#000000" />
+</LinearLayout>

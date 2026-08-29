@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.RocoMerchant" parent="Theme.RocoMerchant.Base">
+        <!-- API 27+：底部导航栏浅色背景 + 深色图标 -->
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

@@ -1,0 +1,40 @@
+# ============================================================
+# RocoMerchant · 远行商人闹钟
+# Local-only files & secrets — never commit these
+# ============================================================
+
+# --- Secrets: signing keystore & API credentials (NEVER COMMIT) ---
+keystore.properties
+keystore/
+*.jks
+*.keystore
+
+# --- Android / Gradle build outputs ---
+build/
+.gradle/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.aar
+dist/
+
+# --- Local runtime / harness directories ---
+.dsh/
+.dsh-vision-toolkit/
+.gradle-home/
+.gradle-tmp/
+
+# --- IDE ---
+.idea/
+*.iml
+.vscode/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+*.log

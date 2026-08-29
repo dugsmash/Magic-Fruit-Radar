@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+  body { width: 1080px; height: 1920px; overflow: hidden; }
+  .poster {
+    width: 1080px; height: 1920px; position: relative; padding: 90px 70px;
+    background: radial-gradient(900px 500px at 20% -5%, #FFF3D6, transparent),
+                radial-gradient(900px 700px at 100% 30%, #EFD9FF, transparent),
+                linear-gradient(170deg, #FFF6E0 0%, #FBEEDC 45%, #F3E6F7 100%);
+    display: flex; flex-direction: column;
+  }
+  .leaves { position: absolute; font-size: 64px; }
+  .l1 { top: 40px; left: 60px; } .l2 { top: 60px; right: 70px; }
+  .l3 { bottom: 60px; left: 70px; } .l4 { bottom: 80px; right: 60px; }
+  .badge {
+    align-self: flex-start; background: linear-gradient(90deg, #7C5CFF, #9B7BFF);
+    color: #fff; font-size: 26px; font-weight: 700; padding: 14px 34px; border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(124,92,255,.35);
+  }
+  h1 {
+    margin-top: 50px; font-size: 108px; font-weight: 900; color: #4A3B32; letter-spacing: 4px;
+    text-shadow: 0 4px 0 #fff;
+  }
+  .slogan { margin-top: 18px; font-size: 44px; color: #7C5CFF; font-weight: 700; }
+  .sub { margin-top: 10px; font-size: 28px; color: #9B8C80; }
+  .phone {
+    margin: 60px auto 0; width: 470px; height: 880px; border-radius: 70px;
+    background: linear-gradient(180deg, #FFFDF6, #FFF6E0);
+    border: 14px solid #1E1B2E; box-shadow: 0 40px 80px rgba(74,59,50,.35);
+    position: relative; padding: 70px 30px 30px; display: flex; flex-direction: column;
+  }
+  .notch { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 130px; height: 26px; background: #1E1B2E; border-radius: 14px; }
+  .notif {
+    background: rgba(30,27,46,.95); border-radius: 24px; color: #fff; padding: 24px; display: flex; gap: 18px;
+    box-shadow: 0 16px 40px rgba(0,0,0,.35);
+  }
+  .notif .ic { width: 74px; height: 74px; border-radius: 18px; background: linear-gradient(135deg,#FFD166,#FF9F43); font-size: 42px; display:flex; align-items:center; justify-content:center; flex: 0 0 auto; }
+  .notif .t { font-size: 22px; opacity: .85; }
+  .notif .b { font-size: 30px; font-weight: 700; margin-top: 6px; }
+  .notif .m { font-size: 20px; opacity: .75; margin-top: 4px; }
+  .shelf { margin-top: 26px; }
+  .wood {
+    background: linear-gradient(180deg, #A9743F, #8A5A2B 60%, #6B4226);
+    border-radius: 20px; padding: 22px 16px; border: 3px solid #4E2F17;
+    display: flex; justify-content: space-around; align-items: flex-end; gap: 10px; margin-bottom: 18px;
+  }
+  .item { text-align: center; color: #fff; }
+  .item .e { font-size: 48px; }
+  .item .n { font-size: 22px; font-weight: 700; margin-top: 6px; }
+  .item .r { font-size: 17px; color: #FFE9B0; margin-top: 3px; }
+  .wood .lf { font-size: 34px; }
+  .features { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .feat {
+    background: rgba(255,255,255,.75); border: 2px solid #F0E4CC; border-radius: 26px;
+    padding: 26px; font-size: 26px; font-weight: 600; color: #4A3B32; display: flex; gap: 14px; align-items: center;
+  }
+  .feat .em { font-size: 40px; }
+  .cta {
+    margin-top: 56px; background: linear-gradient(135deg, #FF9F43, #FF7A00); color: #fff;
+    font-size: 40px; font-weight: 800; text-align: center; padding: 26px; border-radius: 60px;
+    box-shadow: 0 16px 40px rgba(255,122,0,.4);
+  }
+  .foot { margin-top: 28px; text-align: center; font-size: 22px; color: #B3A594; }
+</style>
+</head>
+<body>
+<div class="poster">
+  <span class="leaves l1">🌿</span><span class="leaves l2">🍃</span>
+  <span class="leaves l3">🍃</span><span class="leaves l4">🌿</span>
+  <div class="badge">🎮 洛克王国 · 辅助工具</div>
+  <h1>远行商人闹钟</h1>
+  <div class="slogan">想要的道具，出现时叫你上线！</div>
+  <div class="sub">棱镜球 · 祝福吊坠 · 炫彩精灵蛋 · 圣光护盾</div>
+
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="notif">
+      <div class="ic">🔮</div>
+      <div style="flex:1">
+        <div class="t">远行商人 · 商品到货</div>
+        <div class="b">棱镜球 已上架！</div>
+        <div class="m">剩余窗口 12 分钟 · 仅剩 3 件 🔊📳</div>
+      </div>
+    </div>
+    <div class="shelf">
+      <div class="wood">
+        <span class="lf">🌿</span>
+        <div class="item"><div class="e">⭐</div><div class="n">棱镜球</div><div class="r">★稀有</div></div>
+        <div class="item"><div class="e">📿</div><div class="n">祝福吊坠</div><div class="r">★稀有</div></div>
+        <div class="item"><div class="e">🥚</div><div class="n">炫彩精灵蛋</div><div class="r">★稀有</div></div>
+        <span class="lf">🌿</span>
+      </div>
+      <div class="wood">
+        <span class="lf">🍃</span>
+        <div class="item"><div class="e">🛡️</div><div class="n">圣光护盾</div><div class="r">★稀有</div></div>
+        <div class="item"><div class="e">💎</div><div class="n">星辉宝石</div><div class="r">在售</div></div>
+        <div class="item"><div class="e">🫐</div><div class="n">月光浆果</div><div class="r">在售</div></div>
+        <span class="lf">🍃</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feat"><span class="em">🔔</span>稀有商品到货提醒</div>
+    <div class="feat"><span class="em">🔊</span>消息 + 声音 + 震动</div>
+    <div class="feat"><span class="em">⭐</span>许愿星等级成长</div>
+    <div class="feat"><span class="em">🗒️</span>记录搜索 + 稀有追踪</div>
+  </div>
+
+  <div class="cta">🎁 立即体验 · 不再错过</div>
+  <div class="foot">洛克魔法书开放 API 驱动 · 每轮刷新后 5 分钟自动检测</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_wish" android:icon="@drawable/ic_wish" android:title="@string/tab_wish" />
+    <item android:id="@+id/nav_catalog" android:icon="@drawable/ic_catalog" android:title="@string/tab_catalog" />
+    <item android:id="@+id/nav_record" android:icon="@drawable/ic_record" android:title="@string/tab_record" />
+    <item android:id="@+id/nav_settings" android:icon="@drawable/ic_settings" android:title="@string/tab_settings" />
+</menu>
