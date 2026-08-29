@@ -47,7 +47,7 @@ App 内置**全量道具名称图鉴（2500+ 件，完全离线可用）**；道
 
 ## 📸 界面预览
 
-> 真机实拍截图（OPPO Find X5），仅含应用界面。
+> 真机实拍截图，仅含应用界面。
 
 | 许愿单 | 货架 | 记录 |
 |---|---|---|
@@ -93,12 +93,12 @@ luoke-market/
 │   │   └── RocoMerchant_v0.3.1_release.apk    # 更名「魔力果雷达」+ 手绘图标
 │   ├── TEST_REPORT.md                         # 测试报表
 │   └── poster.html                            # 宣传海报（HTML）
-├── 手绘魔力果.png                            # 🎨 手绘图标原图
+├── magic-fruit-art.png                       # 🎨 手绘图标原图
 ├── roco-merchant-prototype/                  # 🎨 可点击网页原型（零依赖）
 │   ├── index.html · app.js · styles.css
 │   ├── preview.png
 │   └── README.md
-└── test_shots/                               # 🧪 测试截图（模拟器 + OPPO Find X5 真机，仅应用界面）
+└── test_shots/                               # 🧪 测试截图（模拟器 + 真机，仅应用界面）
 ```
 
 > ⚠️ 本地私有文件不入库：签名配置 `keystore.properties`、签名文件 `keystore/`、SDK 路径 `local.properties`、构建产物目录。**各版本正式 APK 已纳入版本控制存放于 `dist/`**（单文件 < 50 MB，符合 GitHub 限制）。
@@ -243,12 +243,12 @@ keyPassword=你的密钥密码
 
 ## 🧪 测试与验证
 
-完整测试过程见 [TEST_REPORT.md](roco-merchant-app/TEST_REPORT.md)，证据截图见 [`test_shots/`](test_shots/)（模拟器 + OPPO Find X5 真机，仅应用界面）。
+完整测试过程见 [TEST_REPORT.md](roco-merchant-app/TEST_REPORT.md)，证据截图见 [`test_shots/`](test_shots/)（模拟器 + 真机，仅应用界面）。
 
 | 环境 | 结果 |
 |---|---|
 | Android 模拟器（xiaomi17promax，Android 37.1）——12 轮功能测试 | ✅ 全部通过 |
-| 真机 OPPO Find X5（Android 16 / API 36，arm64）——真实 API，约 10 积分 | ✅ 全部通过，0 崩溃（`com.roco.merchant`） |
+| 真机（Android 16 / API 36）——真实 API，约 10 积分 | ✅ 全部通过，0 崩溃（`com.roco.merchant`） |
 | `adb reboot` 后不打开应用 | ✅ 后台任务自动恢复 |
 | 卸载审计（任务/白名单/通知渠道/数据目录） | ✅ 彻底清除 |
 | 图鉴同步（2500+ 件，43 页） | ✅ 0 失败；名称图鉴内置离线，图标免费下载本地缓存 |

@@ -379,7 +379,7 @@
 
 1. **应用更名**：`strings.xml` app_name → 魔力果雷达（桌面图标名、通知归属名随之变更）；设置页各品牌后台白名单指引、安装说明、海报（poster.html）、网页原型、README 同步更新
 2. **启动图标换用原图**：
-   - 手绘魔力果原图（`手绘魔力果.png`，1828×1828，随仓库保留）作为图标素材，**整幅原图铺满**图标背景，不设打底色
+   - 手绘魔力果原图（`magic-fruit-art.png`，1828×1828，随仓库保留）作为图标素材，**整幅原图铺满**图标背景，不设打底色
    - 由原图生成 432×432 PNG（`res/mipmap-xxxhdpi/ic_launcher_photo.png`）作为自适应图标背景（`drawable/ic_launcher_bg.xml`，满幅填充，由启动器遮罩裁切）
    - 前景为透明矢量（`drawable/ic_launcher_fg.xml`，含透明圆形路径——**空矢量前景会导致 ColorOS 启动器解析失败、图标降级为默认安卓机器人**，加透明路径后正常）
    - 删除旧 `ic_launcher_foreground.xml` 与 `ic_launcher_background` 颜色
