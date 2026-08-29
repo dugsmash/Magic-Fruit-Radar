@@ -1,4 +1,4 @@
-# 🔮 魔力果雷达 · RocoMerchant
+# 🔮 魔力果雷达 · Magic Fruit Radar
 
 **[English](README.md) | [中文](README_CN.md)**
 
@@ -15,7 +15,7 @@
 
 ## 📖 项目简介
 
-魔力果雷达（RocoMerchant）是一款面向《洛克王国：世界》玩家的轻量、**离线优先**的 Android 提醒应用，应用图标为手绘「魔力果」。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。
+魔力果雷达（Magic Fruit Radar）是一款面向《洛克王国：世界》玩家的轻量、**离线优先**的 Android 提醒应用，应用图标为手绘「魔力果」。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。
 
 App 内置**全量道具名称图鉴（2500+ 件，完全离线可用）**；道具**图标**联网按需下载（官方公共资源、不消耗积分）并缓存在本地，**软件更新不会删除**。另附带可点击的**网页原型**用于产品验证。
 
@@ -86,11 +86,11 @@ luoke-market/
 │   ├── settings.gradle.kts
 │   ├── gradle/ gradlew/ gradlew.bat           # Gradle 8.14.5 包装器
 │   ├── dist/                                  # 📦 各版本正式签名 APK（0.2.5 → 0.3.1）
-│   │   ├── RocoMerchant_v0.2.5_release.apk
-│   │   ├── RocoMerchant_v0.2.6_release.apk
-│   │   ├── RocoMerchant_v0.2.7_release.apk
-│   │   ├── RocoMerchant_v0.3.0_release.apk    # 不含图标；保留道具名称图鉴
-│   │   └── RocoMerchant_v0.3.1_release.apk    # 更名「魔力果雷达」+ 手绘图标
+│   │   ├── MagicFruitRadar_v0.2.5_release.apk
+│   │   ├── MagicFruitRadar_v0.2.6_release.apk
+│   │   ├── MagicFruitRadar_v0.2.7_release.apk
+│   │   ├── MagicFruitRadar_v0.3.0_release.apk    # 不含图标；保留道具名称图鉴
+│   │   └── MagicFruitRadar_v0.3.1_release.apk    # 更名「魔力果雷达」+ 手绘图标
 │   ├── TEST_REPORT.md                         # 测试报表
 │   └── poster.html                            # 宣传海报（HTML）
 ├── magic-fruit-art.png                       # 🎨 手绘图标原图
@@ -263,11 +263,11 @@ keyPassword=你的密钥密码
 
 | 版本 | 要点 | APK |
 |---|---|---|
-| **v0.3.1**（当前） | 更名「魔力果雷达」（Magic-Fruit Radar）；启动图标换为手绘魔力果原图（整幅铺满，无打底色） | `RocoMerchant_v0.3.1_release.apk` |
-| **v0.3.0** | 安装包不含图标（保留全部道具名称离线图鉴）；图标免费按需下载、更新不删除；首次填入正确 API 后弹窗引导 | `RocoMerchant_v0.3.0_release.apk` |
-| **v0.2.7** | 自启动可解除；卸载彻底清除（`allowBackup=false`） | `RocoMerchant_v0.2.7_release.apk` |
-| **v0.2.6** | 后台可靠性专项：开机自恢复、30 分钟守护、电池优化白名单引导 | `RocoMerchant_v0.2.6_release.apk` |
-| **v0.2.5** | 修复 3 个真机 Bug：货架 0 件/误报收摊/跨轮次混货 | `RocoMerchant_v0.2.5_release.apk` |
+| **v0.3.1**（当前） | 更名「魔力果雷达」（Magic Fruit Radar）；启动图标换为手绘魔力果原图（整幅铺满，无打底色） | `MagicFruitRadar_v0.3.1_release.apk` |
+| **v0.3.0** | 安装包不含图标（保留全部道具名称离线图鉴）；图标免费按需下载、更新不删除；首次填入正确 API 后弹窗引导 | `MagicFruitRadar_v0.3.0_release.apk` |
+| **v0.2.7** | 自启动可解除；卸载彻底清除（`allowBackup=false`） | `MagicFruitRadar_v0.2.7_release.apk` |
+| **v0.2.6** | 后台可靠性专项：开机自恢复、30 分钟守护、电池优化白名单引导 | `MagicFruitRadar_v0.2.6_release.apk` |
+| **v0.2.5** | 修复 3 个真机 Bug：货架 0 件/误报收摊/跨轮次混货 | `MagicFruitRadar_v0.2.5_release.apk` |
 
 ---
 

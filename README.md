@@ -1,4 +1,4 @@
-# 🔮 RocoMerchant — Magic-Fruit Radar
+# 🔮 Magic Fruit Radar
 
 **[English](README.md) | [Chinese](README_CN.md)**
 
@@ -15,7 +15,7 @@
 
 ## 📖 Introduction
 
-RocoMerchant ("Magic-Fruit Radar") is a lightweight, **offline-first** Android alarm app for the game *Roco Kingdom: World*. The in-game **Traveling Merchant** restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb, Blessing Necklace or Shiny Pet Egg can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock.
+Magic Fruit Radar is a lightweight, **offline-first** Android alarm app for the game *Roco Kingdom: World*. The in-game **Traveling Merchant** restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb, Blessing Necklace or Shiny Pet Egg can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock.
 
 The app bundles the **full item-name atlas (2,500+ items, works fully offline)**; item **icons** are downloaded on demand from the official wiki resources (free, no credits consumed) and cached locally — they **survive app updates**. The launcher icon is a hand-drawn magic fruit. A clickable **web prototype** is included for product validation.
 
@@ -86,11 +86,11 @@ luoke-market/
 │   ├── settings.gradle.kts
 │   ├── gradle/ gradlew/ gradlew.bat           # Gradle 8.14.5 wrapper
 │   ├── dist/                                  # 📦 Versioned release APKs (0.2.5 → 0.3.1)
-│   │   ├── RocoMerchant_v0.2.5_release.apk
-│   │   ├── RocoMerchant_v0.2.6_release.apk
-│   │   ├── RocoMerchant_v0.2.7_release.apk
-│   │   ├── RocoMerchant_v0.3.0_release.apk    # Icons not bundled; atlas names offline
-│   │   └── RocoMerchant_v0.3.1_release.apk    # Renamed + hand-drawn magic-fruit icon
+│   │   ├── MagicFruitRadar_v0.2.5_release.apk
+│   │   ├── MagicFruitRadar_v0.2.6_release.apk
+│   │   ├── MagicFruitRadar_v0.2.7_release.apk
+│   │   ├── MagicFruitRadar_v0.3.0_release.apk    # Icons not bundled; atlas names offline
+│   │   └── MagicFruitRadar_v0.3.1_release.apk    # Renamed + hand-drawn magic-fruit icon
 │   ├── TEST_REPORT.md                         # Test report
 │   └── poster.html                            # Promotional poster (HTML)
 ├── magic-fruit-art.png                       # 🎨 Hand-drawn icon source art
@@ -263,11 +263,11 @@ All release APKs are versioned under [`roco-merchant-app/dist/`](roco-merchant-a
 
 | Version | Highlights | APK |
 |---|---|---|
-| **v0.3.1** (current) | Renamed to **Magic-Fruit Radar**; launcher icon replaced with the hand-drawn magic-fruit artwork (full-bleed, no backing color) | `RocoMerchant_v0.3.1_release.apk` |
-| **v0.3.0** | Icons no longer bundled — APK keeps the full item-*name* atlas offline; icons download free on demand & persist across updates; one-time dialog after first valid API key | `RocoMerchant_v0.3.0_release.apk` |
-| **v0.2.7** | Disable auto-start toggle; uninstall fully wipes data (`allowBackup=false`) | `RocoMerchant_v0.2.7_release.apk` |
-| **v0.2.6** | Background reliability: boot receiver, 30-min watchdog, battery-optimization whitelist guide | `RocoMerchant_v0.2.6_release.apk` |
-| **v0.2.5** | Fixed 3 bugs: `data` wrapper parsing, premature "packing up" alert, cross-round items | `RocoMerchant_v0.2.5_release.apk` |
+| **v0.3.1** (current) | Renamed to **Magic Fruit Radar**; launcher icon replaced with the hand-drawn magic-fruit artwork (full-bleed, no backing color) | `MagicFruitRadar_v0.3.1_release.apk` |
+| **v0.3.0** | Icons no longer bundled — APK keeps the full item-*name* atlas offline; icons download free on demand & persist across updates; one-time dialog after first valid API key | `MagicFruitRadar_v0.3.0_release.apk` |
+| **v0.2.7** | Disable auto-start toggle; uninstall fully wipes data (`allowBackup=false`) | `MagicFruitRadar_v0.2.7_release.apk` |
+| **v0.2.6** | Background reliability: boot receiver, 30-min watchdog, battery-optimization whitelist guide | `MagicFruitRadar_v0.2.6_release.apk` |
+| **v0.2.5** | Fixed 3 bugs: `data` wrapper parsing, premature "packing up" alert, cross-round items | `MagicFruitRadar_v0.2.5_release.apk` |
 
 ---
 

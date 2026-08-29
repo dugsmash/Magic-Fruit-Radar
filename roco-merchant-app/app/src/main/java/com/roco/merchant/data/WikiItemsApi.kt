@@ -55,7 +55,7 @@ class WikiItemsApi(private val baseUrl: String, private val apiKey: String) {
                 }
                 val req = Request.Builder().url(sb.toString())
                     .header("X-API-Key", apiKey)
-                    .header("User-Agent", "RocoMerchant/0.1 (Android)")
+                    .header("User-Agent", "MagicFruitRadar/0.1 (Android)")
                     .build()
                 client.newCall(req).execute().use { resp ->
                     if (!resp.isSuccessful) return@use PageResult(emptyList(), null)
@@ -79,7 +79,7 @@ class WikiItemsApi(private val baseUrl: String, private val apiKey: String) {
                 baseUrl.trimEnd('/') + iconPath
             val req = Request.Builder().url(url)
                 .header("X-API-Key", apiKey)
-                .header("User-Agent", "RocoMerchant/0.1 (Android)")
+                .header("User-Agent", "MagicFruitRadar/0.1 (Android)")
                 .build()
             client.newCall(req).execute().use { resp ->
                 if (!resp.isSuccessful) return@use null

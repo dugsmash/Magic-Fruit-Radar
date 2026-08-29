@@ -37,7 +37,7 @@ class MerchantApi(private val baseUrl: String, private val apiKey: String) {
         val url = baseUrl.trimEnd('/') + "/api/v1/games/rocom/merchant/info"
         val req = Request.Builder().url(url).apply {
             if (apiKey.isNotBlank()) header("X-API-Key", apiKey)
-            header("User-Agent", "RocoMerchant/0.1 (Android)")
+            header("User-Agent", "MagicFruitRadar/0.1 (Android)")
             header("Accept", "application/json")
         }.build()
         client.newCall(req).execute().use { resp ->
@@ -57,7 +57,7 @@ class MerchantApi(private val baseUrl: String, private val apiKey: String) {
         val body = "{}".toRequestBody(jsonMedia)
         val req = Request.Builder().url(url).post(body).apply {
             if (apiKey.isNotBlank()) header("X-API-Key", apiKey)
-            header("User-Agent", "RocoMerchant/0.1 (Android)")
+            header("User-Agent", "MagicFruitRadar/0.1 (Android)")
             header("Accept", "application/json")
         }.build()
         client.newCall(req).execute().use { resp ->

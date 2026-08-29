@@ -153,7 +153,7 @@
 5. **版本**：versionCode 5 / versionName 0.2.3
 
 ### 第十二轮（2026-08-29 04:10，v0.2.4）—— OPPO Find X5 全面屏适配
-1. **状态栏/导航栏适配**：主题拆分 Theme.RocoMerchant.Base，显式设置 statusBarColor=奶油色、navigationBarColor=白色、windowLightStatusBar=true（API 27+ 另加 windowLightNavigationBar=true）——OPPO 上状态栏图标深色清晰可见，与界面背景一致
+1. **状态栏/导航栏适配**：主题拆分 Theme.Magic Fruit Radar.Base，显式设置 statusBarColor=奶油色、navigationBarColor=白色、windowLightStatusBar=true（API 27+ 另加 windowLightNavigationBar=true）——OPPO 上状态栏图标深色清晰可见，与界面背景一致
 2. **导航标签放缩消除**：底部导航 itemTextAppearanceActive/Inactive 统一为同字号（NavText 12sp）——切换 tab 时标签不再放大缩小（Material 默认选中标签字号更大，切换时会产生"文字放缩"观感）
 3. **大字体适配**：许愿名/货架名/图鉴名等长文本加 maxLines=1 + ellipsize=end，OPPO 默认较大显示字号下不截断不挤压
 4. **OPPO/ColorOS 使用指引**：安装说明新增专节——允许通知、允许自启动、最近任务下拉锁定卡片、电池后台白名单（ColorOS 后台杀进程较激进，这三点是后台检测/提醒可靠的关键）
@@ -247,7 +247,7 @@
 
 ### 版本
 
-- **v0.2.5**：versionCode 7，修复上述 3 个 Bug；产物 `dist/RocoMerchant_v0.2.5_fixed_release.apk`
+- **v0.2.5**：versionCode 7，修复上述 3 个 Bug；产物 `dist/MagicFruitRadar_v0.2.5_fixed_release.apk`
 - 截图：`test_shots/01_launch.png` ~ `test_shots/31_filtered_records.png`（31 张全流程证据）
 
 ---
@@ -303,7 +303,7 @@
 
 ### 验证
 
-- ✅ `gradlew :app:assembleRelease` 编译通过，产物 `dist/RocoMerchant_v0.2.6_release.apk`（正式签名，versionCode 8）
+- ✅ `gradlew :app:assembleRelease` 编译通过，产物 `dist/MagicFruitRadar_v0.2.6_release.apk`（正式签名，versionCode 8）
 - ✅ 模拟器（AVD xiaomi17promax）实测（2026-08-29）：
   - 安装启动零崩溃；首启弹出「🔋 开启后台保护」引导，点「暂不」后重启 App **不再弹**（`batteryGuideShown` 持久化生效）
   - 设置页「后台运行保护」区显示：电池优化 ⚠️ 未忽略 → `cmd deviceidle whitelist +com.roco.merchant` 后重启 App 显示 ✅ 已忽略；下次自动检测 08-29 20:05（北京时间，与 `MerchantPolicy.nextRoundFetchAt()` 一致）；守护任务运行中 ✅
@@ -341,7 +341,7 @@
 - ⏳ 待真机补验：各品牌 ROM 上「自启动白名单解除」的实际路径；云备份（GMS）环境下的卸载行为
 
 --- 
-*产物：`dist/RocoMerchant_v0.2.7_release.apk`（正式签名，46.7 MB）*
+*产物：`dist/MagicFruitRadar_v0.2.7_release.apk`（正式签名，46.7 MB）*
 
 ---
 
@@ -361,13 +361,13 @@
 
 ### 编译验证
 
-- ✅ `gradlew :app:assembleRelease` 编译通过（JDK 17 / AGP 8.5.2 / Kotlin 1.9.24），产物 `dist/RocoMerchant_v0.3.0_release.apk`（正式签名，versionCode 10 / versionName 0.3.0）
+- ✅ `gradlew :app:assembleRelease` 编译通过（JDK 17 / AGP 8.5.2 / Kotlin 1.9.24），产物 `dist/MagicFruitRadar_v0.3.0_release.apk`（正式签名，versionCode 10 / versionName 0.3.0）
 - ✅ APK assets 校验：仅含 `atlas.json`，无 `items/` 目录（zip 校验通过）
 - ✅ 代码走查：图鉴弹窗/货架/记录页图标加载均走「本地缓存 → 按需下载 → emoji 兜底」，去掉 assets 回退后行为正确
 - ⏳ 待真机补验：首次填 Key 弹窗、图标同步进度、更新后图标保留、卸载清除
 
 ---
-*产物：`dist/RocoMerchant_v0.3.0_release.apk`（正式签名，无内置图标）*
+*产物：`dist/MagicFruitRadar_v0.3.0_release.apk`（正式签名，无内置图标）*
 
 ---
 
@@ -383,17 +383,17 @@
    - 由原图生成 432×432 PNG（`res/mipmap-xxxhdpi/ic_launcher_photo.png`）作为自适应图标背景（`drawable/ic_launcher_bg.xml`，满幅填充，由启动器遮罩裁切）
    - 前景为透明矢量（`drawable/ic_launcher_fg.xml`，含透明圆形路径——**空矢量前景会导致 ColorOS 启动器解析失败、图标降级为默认安卓机器人**，加透明路径后正常）
    - 删除旧 `ic_launcher_foreground.xml` 与 `ic_launcher_background` 颜色
-3. **版本**：versionCode 11 / versionName 0.3.1；产物 `dist/RocoMerchant_v0.3.1_release.apk`
+3. **版本**：versionCode 11 / versionName 0.3.1；产物 `dist/MagicFruitRadar_v0.3.1_release.apk`
 
 ### 验证
 
 - ✅ `gradlew :app:assembleRelease` 编译通过（JDK 17 / AGP 8.5.2），正式签名，versionCode 11 / versionName 0.3.1
 - ✅ APK 内图标资源校验：adaptive icon 引用 `ic_launcher_photo.png`（原图生成的 432px PNG）存在
-- ✅ **OPPO Find X5（PFEM10，Android 16）真机实装验证**（2026-08-29，adb 安装 `RocoMerchant_v0.3.1_release.apk`）：
+- ✅ **OPPO Find X5（PFEM10，Android 16）真机实装验证**（2026-08-29，adb 安装 `MagicFruitRadar_v0.3.1_release.apk`）：
   - 空矢量前景版本 → 桌面图标显示默认安卓机器人（ColorOS 无法解析）→ 修复为透明路径前景后，桌面图标正常显示手绘魔力果 ✅
   - 整幅原图铺满版本安装后，应用名「魔力果雷达」与图标均正常显示；应用启动无闪退
   - 应用界面真机截图（仅含应用 UI，无系统栏/桌面）：`test_shots/48_app_wishlist.png`（许愿单）、`test_shots/49_app_shelf.png`（货架，含真实 API 缓存货架）、`test_shots/50_app_records.png`（售卖记录）
 - ⏳ 待补验：不同启动器遮罩形状下的图标显示效果
 
 ---
-*产物：`dist/RocoMerchant_v0.3.1_release.apk`（正式签名，更名「魔力果雷达」+ 手绘图标）*
+*产物：`dist/MagicFruitRadar_v0.3.1_release.apk`（正式签名，更名「魔力果雷达」+ 手绘图标）*
