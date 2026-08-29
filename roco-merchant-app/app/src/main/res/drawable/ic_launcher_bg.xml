@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 手绘魔力果 原图作为自适应图标背景（满幅填充，由启动器遮罩裁切） -->
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@mipmap/ic_launcher_photo"
+    android:gravity="fill" />

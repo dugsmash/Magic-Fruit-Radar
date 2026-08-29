@@ -1,11 +1,11 @@
-# 🧙 远行商人闹钟 · RocoMerchant
+# 🔮 魔力果雷达 · RocoMerchant
 
 > **Your Traveling-Merchant Alarm for 《洛克王国：世界》** — add the items you want to your wishlist, and get a system notification (sound + vibration) the moment they appear on the in-game merchant's shelf, so you never miss a rare drop again.
 >
 > **《洛克王国：世界》远行商人商品提醒器** —— 把想要的道具加进许愿单，商人上架的那一刻，手机以「消息 + 声音 + 震动」通知你上线抢购，稀有道具不再错过。
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.3.0-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-v0.3.1-blue" alt="version">
   <img src="https://img.shields.io/badge/Android-8.0%2B-green" alt="android">
   <img src="https://img.shields.io/badge/Kotlin-1.9-blueviolet" alt="kotlin">
   <img src="https://img.shields.io/badge/license-MIT-yellow" alt="license">
@@ -17,13 +17,13 @@
 
 **EN** — RocoMerchant is a lightweight, offline-first Android alarm app for the game *Roco Kingdom: World* (《洛克王国：世界》). The in-game **Traveling Merchant** (远行商人) restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb (棱镜球), Blessing Necklace (祝福项链) or Shiny Pet Egg (炫彩精灵蛋) can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock. It bundles the **full item-name atlas (2,500+ items, works fully offline)**; item **icons** are downloaded on demand from the official wiki resources (free, no credits) and cached locally — they survive app updates. A clickable **web prototype** is included for product validation.
 
-**中文** — RocoMerchant（远行商人闹钟）是一款面向《洛克王国：世界》玩家的轻量、离线优先的 Android 提醒应用。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。App 内置**全量道具名称图鉴（2500+ 件，完全离线可用）**；道具**图标**联网按需下载（官方资源、不消耗积分）并缓存在本地，软件更新不会删除。另附带可点击的**网页原型**用于产品验证。
+**中文** — RocoMerchant（魔力果雷达）是一款面向《洛克王国：世界》玩家的轻量、离线优先的 Android 提醒应用，图标为手绘「魔力果」。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。App 内置**全量道具名称图鉴（2500+ 件，完全离线可用）**；道具**图标**联网按需下载（官方资源、不消耗积分）并缓存在本地，软件更新不会删除。另附带可点击的**网页原型**用于产品验证。
 
 ---
 
 ## ✨ Features / 功能特性
 
-### 📱 Android App（v0.3.0 · versionCode 10）
+### 📱 Android App（v0.3.1 · versionCode 11）
 
 | EN | 中文 |
 |---|---|
@@ -79,18 +79,20 @@ luoke-market/
 │   │   │   ├── assets/
 │   │   │   │   └── atlas.json                 # Full item-name atlas (offline) · 全量道具名称图鉴
 │   │   │   └── res/                           # Layouts, drawables, strings, themes
-│   │   ├── build.gradle.kts                   # App module config (v0.3.0 · versionCode 10)
+│   │   ├── build.gradle.kts                   # App module config (v0.3.1 · versionCode 11)
 │   │   └── proguard-rules.pro
 │   ├── build.gradle.kts                       # Root build (AGP 8.5.2, Kotlin 1.9.24)
 │   ├── settings.gradle.kts
 │   ├── gradle/ gradlew/ gradlew.bat           # Gradle 8.14.5 wrapper
-│   ├── dist/                                  # 📦 Versioned release APKs (v0.2.5 / 0.2.6 / 0.2.7 / 0.3.0)
+│   ├── dist/                                  # 📦 Versioned release APKs (0.2.5 → 0.3.1)
 │   │   ├── RocoMerchant_v0.2.5_release.apk
 │   │   ├── RocoMerchant_v0.2.6_release.apk
 │   │   ├── RocoMerchant_v0.2.7_release.apk
-│   │   └── RocoMerchant_v0.3.0_release.apk    # Icons not bundled; atlas names offline
+│   │   ├── RocoMerchant_v0.3.0_release.apk    # Icons not bundled; atlas names offline
+│   │   └── RocoMerchant_v0.3.1_release.apk    # Renamed 魔力果雷达 + hand-drawn icon
 │   ├── TEST_REPORT.md                         # Test report · 测试报表
 │   └── poster.html                            # Promotional poster (HTML) · 宣传海报
+├── 手绘魔力果.jpeg                            # 🎨 Hand-drawn icon source art · 图标原图
 ├── roco-merchant-prototype/                  # 🎨 Clickable web prototype (zero-dependency)
 │   ├── index.html · app.js · styles.css
 │   ├── preview.png
@@ -268,7 +270,8 @@ All release APKs are versioned under [`roco-merchant-app/dist/`](roco-merchant-a
 
 | Version / 版本 | Highlights / 要点 | APK |
 |---|---|---|
-| **v0.3.0** (current) | Icons no longer bundled — APK keeps the full item-*name* atlas offline; icons download free on demand & persist across updates; one-time dialog after first valid API key · 安装包不含图标（保留全部道具名称离线图鉴）；图标免费按需下载、更新不删除；首次填入正确 API 后弹窗引导 | `RocoMerchant_v0.3.0_release.apk` |
+| **v0.3.1** (current) | Renamed to **魔力果雷达** (Magic-Fruit Radar); launcher icon replaced with the hand-drawn 魔力果 artwork · 应用更名「魔力果雷达」；启动图标换为手绘魔力果原图 | `RocoMerchant_v0.3.1_release.apk` |
+| **v0.3.0** | Icons no longer bundled — APK keeps the full item-*name* atlas offline; icons download free on demand & persist across updates; one-time dialog after first valid API key · 安装包不含图标（保留全部道具名称离线图鉴）；图标免费按需下载、更新不删除；首次填入正确 API 后弹窗引导 | `RocoMerchant_v0.3.0_release.apk` |
 | **v0.2.7** | Disable auto-start toggle; uninstall fully wipes data (`allowBackup=false`) · 自启动可解除；卸载彻底清除 | `RocoMerchant_v0.2.7_release.apk` |
 | **v0.2.6** | Background reliability: boot receiver, 30-min watchdog, battery-optimization whitelist guide · 后台可靠性专项（开机自恢复/守护/白名单引导） | `RocoMerchant_v0.2.6_release.apk` |
 | **v0.2.5** | Fixed 3 bugs: `data` wrapper parsing, premature "packing up" alert, cross-round items · 修复 3 个真机 Bug（货架 0 件/误报收摊/跨轮次混货） | `RocoMerchant_v0.2.5_release.apk` |
