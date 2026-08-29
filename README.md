@@ -15,7 +15,7 @@
 
 ## 📖 Introduction / 项目简介
 
-**EN** — [RocoMerchant](https://github.com/) is a lightweight, offline-first Android alarm app for the game *Roco Kingdom: World* (《洛克王国：世界》). The in-game **Traveling Merchant** (远行商人) restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb (棱镜球), Blessing Necklace (祝福项链) or Shiny Pet Egg (炫彩精灵蛋) can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock. It bundles the full item atlas (**2,500+ items with icons, ~41 MB, works fully offline**) and comes with a clickable **web prototype** for product validation.
+**EN** — RocoMerchant is a lightweight, offline-first Android alarm app for the game *Roco Kingdom: World* (《洛克王国：世界》). The in-game **Traveling Merchant** (远行商人) restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb (棱镜球), Blessing Necklace (祝福项链) or Shiny Pet Egg (炫彩精灵蛋) can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock. It bundles the full item atlas (**2,500+ items with icons, ~41 MB, works fully offline**) and comes with a clickable **web prototype** for product validation.
 
 **中文** — RocoMerchant（远行商人闹钟）是一款面向《洛克王国：世界》玩家的轻量、离线优先的 Android 提醒应用。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。App 内置全量道具图鉴（**2500+ 件含图标，约 41 MB，完全离线可用**），并附带一个可点击的**网页原型**用于产品验证。
 
