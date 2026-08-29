@@ -31,6 +31,16 @@ The app bundles the **full item-name atlas with 2,500+ items that works fully of
 
 ---
 
+## Screenshots
+
+> Real-device captures, app UI only.
+
+| Wishlist | Shelf | Records |
+|---|---|---|
+| ![wishlist](docs/48_app_wishlist.png) | ![shelf](docs/49_app_shelf.png) | ![records](docs/50_app_records.png) |
+
+---
+
 ## Getting Started
 
 ### Android App
