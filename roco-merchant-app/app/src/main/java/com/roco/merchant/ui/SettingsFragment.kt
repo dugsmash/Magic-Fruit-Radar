@@ -19,7 +19,9 @@ import com.roco.merchant.notify.Notifier
 import com.roco.merchant.util.BatteryOptimizer
 import com.roco.merchant.worker.MerchantChecker
 import com.roco.merchant.worker.WorkScheduler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SettingsFragment : Fragment() {
 
@@ -50,6 +52,7 @@ class SettingsFragment : Fragment() {
             prefs.classMode = binding.classSwitch.isChecked
             if (prefs.autoStart) WorkScheduler.schedule(requireContext())
             Toast.makeText(requireContext(), "设置已保存，后台任务已调度", Toast.LENGTH_SHORT).show()
+            maybeGuideIconDownload()
         }
 
         binding.testBtn.setOnClickListener {
@@ -100,8 +103,9 @@ class SettingsFragment : Fragment() {
                     "道具图鉴与图片\n" +
                     "· 洛克魔法书 Wiki 图鉴 API（/api/v1/games/rocom/wiki/items）\n" +
                     "· 图标原图：/api/v1/resources/wiki/assets/items/bag/<id>.png（公共资源，不消耗积分）\n\n" +
-                    "说明：本应用已内置全部道具图鉴与图片（2528 件，随安装包携带、离线可用），\n" +
-                    "图鉴更新可在设置页点「🔄 立即同步全部图鉴与图片」手动补全。\n" +
+                    "说明：本应用内置全部道具名称图鉴（离线可用）；道具图标需联网下载\n" +
+                    "（设置页「🔄 立即同步全部图鉴与图片」，约 2 分钟，不消耗积分）。\n" +
+                    "图标下载后保存在手机本地，软件更新不会删除；未下载的图标以名称 + emoji 显示。\n" +
                     "远行商人商品随轮次动态变化，货架显示以游戏内实时数据为准。"
                 )
                 .setPositiveButton("知道了", null)
@@ -109,33 +113,65 @@ class SettingsFragment : Fragment() {
         }
 
         // 图鉴同步（全量拉取 + 补全图片，进度条 + 文本实时显示）
-        binding.btnAtlasSync.setOnClickListener {
-            binding.btnAtlasSync.isEnabled = false
-            binding.atlasProgress.progress = 0
-            binding.atlasStatus.text = "正在同步全部图鉴…（元数据接口限频，需约 2 分钟）"
-            lifecycleScope.launch {
-                val p = AtlasRepository.sync(requireContext()) { prog ->
-                    if (_binding != null && isAdded) {
-                        requireActivity().runOnUiThread {
-                            val pct = progressPercent(prog)
-                            binding.atlasProgress.progress = pct
-                            binding.atlasStatus.text = if (prog.phase == 1)
-                                "同步中… 图标补全 " + prog.downloaded + "/" + prog.needIcons + " 张（" + pct + "%）"
-                            else
-                                "同步中… 拉取图鉴清单 第 " + prog.page + "/" + prog.totalPages + " 页 · 已收录 " + prog.totalItems + " 件（" + pct + "%）"
-                        }
+        binding.btnAtlasSync.setOnClickListener { runAtlasSync() }
+    }
+
+    /** 图鉴同步：全量拉取道具名称清单 + 补全缺失图标（公共资源，不消耗积分） */
+    private fun runAtlasSync() {
+        if (_binding == null) return
+        binding.btnAtlasSync.isEnabled = false
+        binding.atlasProgress.progress = 0
+        binding.atlasStatus.text = "正在同步全部图鉴…（元数据接口限频，需约 2 分钟）"
+        lifecycleScope.launch {
+            val p = AtlasRepository.sync(requireContext()) { prog ->
+                if (_binding != null && isAdded) {
+                    requireActivity().runOnUiThread {
+                        val pct = progressPercent(prog)
+                        binding.atlasProgress.progress = pct
+                        binding.atlasStatus.text = if (prog.phase == 1)
+                            "同步中… 图标补全 " + prog.downloaded + "/" + prog.needIcons + " 张（" + pct + "%）"
+                        else
+                            "同步中… 拉取图鉴清单 第 " + prog.page + "/" + prog.totalPages + " 页 · 已收录 " + prog.totalItems + " 件（" + pct + "%）"
                     }
                 }
-                if (_binding != null) {
-                    binding.btnAtlasSync.isEnabled = true
-                    binding.atlasProgress.progress = if (p.error != null) 0 else 100
-                    binding.atlasStatus.text = if (p.error != null) "⚠️ " + p.error
-                        else "图鉴同步完成：共 " + p.totalItems + " 件 · 补全图标 " + p.downloaded + " 张（失败 " + p.failed + "）"
-                }
-                val msg = if (p.error != null) p.error
-                    else "图鉴同步完成：共 " + p.totalItems + " 件，补全图标 " + p.downloaded + " 张"
-                Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
             }
+            if (_binding != null) {
+                binding.btnAtlasSync.isEnabled = true
+                binding.atlasProgress.progress = if (p.error != null) 0 else 100
+                binding.atlasStatus.text = if (p.error != null) "⚠️ " + p.error
+                    else "图鉴同步完成：共 " + p.totalItems + " 件 · 补全图标 " + p.downloaded + " 张（失败 " + p.failed + "）"
+            }
+            val msg = if (p.error != null) p.error
+                else "图鉴同步完成：共 " + p.totalItems + " 件，补全图标 " + p.downloaded + " 张"
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+        }
+    }
+
+    /**
+     * 首次填入正确 API 后的图标下载引导（仅提示一次）：
+     * 校验 Key 有效（拉取 Wiki 图鉴首页 1 条，公共接口不消耗积分）→ 弹窗告知图标需在设置中下载。
+     */
+    private fun maybeGuideIconDownload() {
+        if (prefs.iconGuideShown) return
+        val key = prefs.apiKey
+        if (key.isBlank()) return
+        lifecycleScope.launch {
+            val valid = WikiItemsApi.validateKey(prefs.baseUrl, key)
+            if (!valid || prefs.iconGuideShown) return@launch
+            prefs.iconGuideShown = true
+            if (_binding == null || !isAdded) return@launch
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("🎨 道具图标下载")
+                .setMessage(
+                    "安装包仅内置全部道具名称图鉴（离线可用），不包含道具图标。\n\n" +
+                    "请联网下载全部道具图标：\n" +
+                    "设置 →「🔄 立即同步全部图鉴与图片」（公共资源，不消耗积分，约 2 分钟）。\n\n" +
+                    "图标下载后保存在手机本地，软件更新不会删除；\n" +
+                    "未下载的图标将以道具名称 + emoji 显示。"
+                )
+                .setPositiveButton("立即下载图标") { _, _ -> runAtlasSync() }
+                .setNegativeButton("稍后再说", null)
+                .show()
         }
     }
 
@@ -209,15 +245,12 @@ class SettingsFragment : Fragment() {
         binding.settingsInfo.text = "后端：" + prefs.baseUrl + "\nAPI Key：" +
             (if (prefs.apiKey.isBlank()) "未配置" else prefs.apiKey.take(6) + "…" + prefs.apiKey.takeLast(4)) +
             "\n策略：商人每轮(08/12/16/20点)刷新后 5 分钟自动检测一次" +
-            "\n图鉴：已内置全部道具与图片，可手动补全更新" +
+            "\n图鉴：已内置全部道具名称（离线），图标需联网同步下载" +
             "\n上次请求轮次：" + (if (prefs.lastFetchKey.isBlank()) "无" else prefs.lastFetchKey)
-        // 图鉴统计（内置 + 本地补全）
+        // 图鉴统计：道具名称数（内置 atlas.json）+ 本地已下载图标数（files/item_icons/）
         val count = AtlasStore.load(requireContext()).size
-        val icons = maxOf(
-            WikiItemsApi.bundledIconCount(requireContext()),
-            WikiItemsApi.iconDir(requireContext()).listFiles()?.size ?: 0
-        )
-        binding.atlasStatus.text = "已收录 " + count + " 件 · 图标 " + icons + " 张（内置，离线可用）"
+        val icons = WikiItemsApi.cachedIconCount(requireContext())
+        binding.atlasStatus.text = "已收录 " + count + " 件道具 · 本地图标 " + icons + " 张（未下载时显示名称 + emoji）"
     }
 
     override fun onResume() {

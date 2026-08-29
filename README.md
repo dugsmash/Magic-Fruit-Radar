@@ -5,7 +5,7 @@
 > **《洛克王国：世界》远行商人商品提醒器** —— 把想要的道具加进许愿单，商人上架的那一刻，手机以「消息 + 声音 + 震动」通知你上线抢购，稀有道具不再错过。
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.2.7-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-v0.3.0-blue" alt="version">
   <img src="https://img.shields.io/badge/Android-8.0%2B-green" alt="android">
   <img src="https://img.shields.io/badge/Kotlin-1.9-blueviolet" alt="kotlin">
   <img src="https://img.shields.io/badge/license-MIT-yellow" alt="license">
@@ -15,19 +15,20 @@
 
 ## 📖 Introduction / 项目简介
 
-**EN** — RocoMerchant is a lightweight, offline-first Android alarm app for the game *Roco Kingdom: World* (《洛克王国：世界》). The in-game **Traveling Merchant** (远行商人) restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb (棱镜球), Blessing Necklace (祝福项链) or Shiny Pet Egg (炫彩精灵蛋) can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock. It bundles the full item atlas (**2,500+ items with icons, ~41 MB, works fully offline**) and comes with a clickable **web prototype** for product validation.
+**EN** — RocoMerchant is a lightweight, offline-first Android alarm app for the game *Roco Kingdom: World* (《洛克王国：世界》). The in-game **Traveling Merchant** (远行商人) restocks 4 times a day (08:00 / 12:00 / 16:00 / 20:00 Beijing Time) with a small, random inventory and short sale windows — rare items like the Prism Orb (棱镜球), Blessing Necklace (祝福项链) or Shiny Pet Egg (炫彩精灵蛋) can vanish in minutes. This app watches the merchant's shelf in the background, matches it against your **wishlist**, and pushes a notification the instant a wished item is in stock. It bundles the **full item-name atlas (2,500+ items, works fully offline)**; item **icons** are downloaded on demand from the official wiki resources (free, no credits) and cached locally — they survive app updates. A clickable **web prototype** is included for product validation.
 
-**中文** — RocoMerchant（远行商人闹钟）是一款面向《洛克王国：世界》玩家的轻量、离线优先的 Android 提醒应用。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。App 内置全量道具图鉴（**2500+ 件含图标，约 41 MB，完全离线可用**），并附带一个可点击的**网页原型**用于产品验证。
+**中文** — RocoMerchant（远行商人闹钟）是一款面向《洛克王国：世界》玩家的轻量、离线优先的 Android 提醒应用。游戏内「远行商人」每天按北京时间 **08/12/16/20 点** 4 轮随机上架少量商品，售卖窗口短、库存少，稀有道具（棱镜球、祝福项链、炫彩精灵蛋等）往往几分钟内就被抢空。本应用在后台自动盯梢商人货架，与你的**许愿单**比对，愿望商品一上架立即推送通知叫你上线。App 内置**全量道具名称图鉴（2500+ 件，完全离线可用）**；道具**图标**联网按需下载（官方资源、不消耗积分）并缓存在本地，软件更新不会删除。另附带可点击的**网页原型**用于产品验证。
 
 ---
 
 ## ✨ Features / 功能特性
 
-### 📱 Android App（v0.2.7 · versionCode 9）
+### 📱 Android App（v0.3.0 · versionCode 10）
 
 | EN | 中文 |
 |---|---|
-| **Wishlist with built-in atlas** — 2,500+ items browsable/searchable offline; default wishlist pre-loaded; per-item on/off switch | **许愿单 + 内置图鉴**：2500+ 道具离线浏览/搜索；默认预置愿望；逐件开关「盯梢/暂停」 |
+| **Wishlist with built-in atlas** — 2,500+ item *names* browsable/searchable offline; default wishlist pre-loaded; per-item on/off switch | **许愿单 + 内置图鉴**：2500+ 道具名称离线浏览/搜索；默认预置愿望；逐件开关「盯梢/暂停」 |
+| **Item icons on demand** — APK bundles **no icons** (small install); icons are downloaded free from the official wiki resources and cached in the app data dir; they **survive app updates** (deleted only on uninstall); a one-time dialog prompts icon download after the first valid API key; missing icons fall back to name + emoji | **图标按需下载**：安装包不含图标（体积更小）；图标免费（公共资源）下载并缓存于应用数据目录，**软件更新不删除**（仅卸载清除）；首次填入正确 API 后弹窗引导下载；未下载时以名称 + emoji 显示 |
 | **Automatic background checks** — polls once per merchant round (08/12/16/20 +5 min, Beijing Time) via WorkManager; self-healing watchdog every 30 min; auto re-schedule after reboot / upgrade / timezone change | **后台自动检测**：每轮商人刷新后 5 分钟检测一次（WorkManager）；每 30 分钟自愈守护；开机/升级/改时区自动重排 |
 | **Rich notifications** — sound + vibration by default; DND mode (mute) for class/meetings; second alert 15 min before the merchant packs up | **到货通知**：声音+震动（默认开启）；免打扰模式（静音）；收摊前 15 分钟二次提醒 |
 | **Merchant shelf view** — live round countdown, rare-item star marks, one-tap "Claimed" (🎯 抢到) | **货架页**：本轮倒计时、稀有星标、一键「抢到」 |
@@ -35,7 +36,7 @@
 | **Wish-star leveling** — +1 star per rare item claimed; level-up curve 3/5/7/9… | **许愿星等级**：每抢到 1 件稀有 +1 星，3/5/7/9… 递增升级 |
 | **Background reliability suite** — boot receiver, battery-optimization whitelist guide, per-brand (MIUI/EMUI/ColorOS/vivo/Samsung) whitelist instructions, one-tap disable auto-start | **后台可靠性专项**：开机自恢复、电池优化白名单引导、各品牌后台白名单指引、一键解除自启动 |
 | **Privacy-first** — `allowBackup=false`, backup/transfer excluded via data-extraction rules; uninstalling wipes everything (Key, wishlist, records, jobs, whitelist) | **隐私优先**：禁止系统备份与迁移；卸载即彻底清除（Key/许愿单/记录/后台任务/白名单） |
-| **Manual atlas sync** — refresh the bundled atlas & icons from the wiki API anytime, with progress bar and clear error messages | **手动图鉴同步**：一键从图鉴 API 补全图鉴与图标，带进度条与明确错误提示 |
+| **Manual atlas sync** — refresh the item-name atlas & download all icons from the wiki API anytime, with progress bar and clear error messages | **手动图鉴同步**：一键刷新名称图鉴并补全全部图标（带进度条与明确错误提示） |
 
 ### 🎨 Web Prototype（纯前端，零依赖）
 
@@ -76,14 +77,18 @@ luoke-market/
 │   │   │   │   ├── util/BatteryOptimizer.kt   # Ignore-battery-optimization helper
 │   │   │   │   └── worker/                    # WorkManager: check/watchdog/boot-receiver
 │   │   │   ├── assets/
-│   │   │   │   ├── atlas.json                 # Full item atlas · 全量道具图鉴
-│   │   │   │   └── items/                     # ~2,500 bundled item icons (~41 MB, offline)
+│   │   │   │   └── atlas.json                 # Full item-name atlas (offline) · 全量道具名称图鉴
 │   │   │   └── res/                           # Layouts, drawables, strings, themes
-│   │   ├── build.gradle.kts                   # App module config
+│   │   ├── build.gradle.kts                   # App module config (v0.3.0 · versionCode 10)
 │   │   └── proguard-rules.pro
 │   ├── build.gradle.kts                       # Root build (AGP 8.5.2, Kotlin 1.9.24)
 │   ├── settings.gradle.kts
 │   ├── gradle/ gradlew/ gradlew.bat           # Gradle 8.14.5 wrapper
+│   ├── dist/                                  # 📦 Versioned release APKs (v0.2.5 / 0.2.6 / 0.2.7 / 0.3.0)
+│   │   ├── RocoMerchant_v0.2.5_release.apk
+│   │   ├── RocoMerchant_v0.2.6_release.apk
+│   │   ├── RocoMerchant_v0.2.7_release.apk
+│   │   └── RocoMerchant_v0.3.0_release.apk    # Icons not bundled; atlas names offline
 │   ├── TEST_REPORT.md                         # Test report · 测试报表
 │   └── poster.html                            # Promotional poster (HTML) · 宣传海报
 ├── roco-merchant-prototype/                  # 🎨 Clickable web prototype (zero-dependency)
@@ -93,9 +98,9 @@ luoke-market/
 └── test_shots/                               # 🧪 36 test screenshots (emulator + OPPO Find X5)
 ```
 
-> ⚠️ Local-only files excluded from git: `keystore.properties`, `keystore/` (release signing key), `local.properties`, `dist/` (built APKs — publish via GitHub Releases instead), Gradle build outputs. See [.gitignore](.gitignore).
+> ⚠️ Local-only files excluded from git: `keystore.properties`, `keystore/` (release signing key), `local.properties` (SDK path), Gradle build outputs. **Release APKs of every version are versioned in `dist/`** (each < 50 MB, safe for GitHub).
 >
-> ⚠️ 本地私有文件不入库：签名配置 `keystore.properties`、签名文件 `keystore/`、SDK 路径 `local.properties`、构建产物 `dist/`（APK 请走 GitHub Releases 发布）。详见 [.gitignore](.gitignore)。
+> ⚠️ 本地私有文件不入库：签名配置 `keystore.properties`、签名文件 `keystore/`、SDK 路径 `local.properties`、构建产物目录。**各版本正式 APK 已纳入版本控制存放于 `dist/`**（单文件 < 50 MB，符合 GitHub 限制）。
 
 ---
 
@@ -155,7 +160,7 @@ Without a keystore you can still build and install the **debug** APK, which uses
 2. Allow "Install unknown apps" when prompted (OPPO/OnePlus: Settings → Other settings → Device & privacy → Install unknown apps).
 3. Grant the **Notification** permission on first launch — it is required for arrival alerts.
 
-> Built release APKs for each version are also kept in `roco-merchant-app/dist/` locally; for public distribution use [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) (recommended, since they are excluded from git).
+> Release APKs of every version are versioned in `roco-merchant-app/dist/`. For public distribution we also recommend attaching them to [GitHub Releases](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository) for direct one-click downloads.
 
 ---
 
@@ -165,7 +170,8 @@ Without a keystore you can still build and install the **debug** APK, which uses
 
 1. Open the app → go to **设置 (Settings)** → fill in your **洛克魔法书 API Key** (get one at [https://rocom.shallow.ink/](https://rocom.shallow.ink/)).
 2. Tap **保存设置 (Save)**. The app now auto-checks once per merchant round — 5 minutes after each refresh at Beijing Time 08/12/16/20.
-3. Open **许愿单 (Wishlist)** → tap **+** → browse/search the built-in atlas (offline) → tap items to add. Defaults: 棱镜球 / 祝福项坠 / 炫彩精灵蛋 / 首领血脉秘药.
+3. **Item icons** are *not* bundled in the APK. After you save a **valid** API key for the first time, a dialog appears prompting you to download them: tap **立即下载图标** (≈2 minutes, free public resources, no credits consumed), or go to 设置 → **🔄 立即同步全部图鉴与图片** anytime. Downloaded icons are stored in the app data dir and **never deleted by app updates** — they are only removed on uninstall. Until downloaded, items show name + emoji.
+4. Open **许愿单 (Wishlist)** → tap **+** → browse/search the built-in name atlas (offline) → tap items to add. Defaults: 棱镜球 / 祝福项坠 / 炫彩精灵蛋 / 首领血脉秘药.
 
 ### Alerts / 提醒
 
@@ -188,9 +194,17 @@ Android manufacturers (MIUI / EMUI / ColorOS / OriginOS / MagicOS) aggressively 
 
 Uninstalling wipes everything — API Key, wishlist, records, notification channels, Doze whitelist and background jobs are all removed with the package. Cloud backup & device transfer are disabled (`allowBackup=false`), so old settings never come back after reinstall. **Keep your API Key safe yourself.**
 
-### Cost note / 积分说明
+### Credits & cost — who gets paid / 积分与费用 — 钱付给谁
 
-Automatic checks run **once per round** (4/day) to avoid wasting API credits; **manual refresh** calls the paid endpoint (~5 credits per call) and always asks for confirmation first.
+> 💰 **Important: credits are charged by the data service, NOT by this app / 重要：积分由数据服务方计费，本应用作者不收取任何费用。**
+
+| Question / 问题 | Answer / 答案 |
+|---|---|
+| Where does the money go? / 钱付给了谁？ | **洛克魔法书 (Roco Magic Book) service** — the operator of `rocom.shallow.ink` / `wegame.shallow.ink`. You buy credits and an API Key on their website; each API call deducts credits from **their** billing system. **付给洛克魔法书服务方**：你在其官网充值积分并购买 Key，每次接口调用由**他们**的系统扣费。 |
+| Does the developer get paid? / 作者收费吗？ | **No.** The author of this app earns nothing from your credits — no commission, no resale, no hidden fees. **不收费**：本应用作者不参与任何分成，也不代收费用。 |
+| In-app purchases? / 应用内有内购吗？ | **None.** No ads, no IAP, no paid features — the app is free. **没有任何内购/广告/付费功能**，应用本身完全免费。 |
+| How are credits consumed? / 积分怎么消耗？ | Automatic checks: **1 paid call per merchant round** (4/day max, throttled to avoid waste). Manual refresh: **~5 credits per call**, always with a confirmation dialog. Item atlas & icons: **free public resources, 0 credits**. **自动检测每轮仅 1 次付费调用（每天最多 4 次）；手动刷新约 5 积分/次且需弹窗确认；道具图鉴与图标为公共资源，0 积分。** |
+| What if the key is invalid / credits run out? / Key 无效或积分用完？ | The app shows clear error messages and never retries blindly — you top up or replace the key at the service's website. **App 会给出明确错误提示，不会盲目重试**；充值或更换 Key 请前往服务方官网。 |
 
 ---
 
@@ -242,9 +256,22 @@ Full details in [TEST_REPORT.md](roco-merchant-app/TEST_REPORT.md) (Chinese), 36
 | Real device OPPO Find X5 (Android 16 / API 36, arm64) — real API, ~10 credits | ✅ All passed, 0 crashes (`com.roco.merchant`) |
 | `adb reboot` without opening the app | ✅ Background jobs auto-restored |
 | Uninstall audit (jobs / whitelist / channels / data dir) | ✅ Fully cleared |
-| Atlas sync (2,500+ items, 43 pages) | ✅ 0 failures; icons bundled & offline |
+| Atlas sync (2,500+ items, 43 pages) | ✅ 0 failures; name atlas bundled & offline; icons downloaded free & cached locally |
 
-**Key bug fixes along the way / 关键修复：** response `data` wrapper not parsed → shelf always empty (v0.2.5) · premature "packing up" alert without remaining-time check (v0.2.5) · cross-round items leaking into the current shelf (v0.2.5) · wishlist switch crash from ViewHolder reuse (v0.2.3) · background jobs lost after reboot (v0.2.6 boot receiver + watchdog) · settings surviving uninstall via cloud backup (v0.2.7 `allowBackup=false`).
+**Key bug fixes along the way / 关键修复：** response `data` wrapper not parsed → shelf always empty (v0.2.5) · premature "packing up" alert without remaining-time check (v0.2.5) · cross-round items leaking into the current shelf (v0.2.5) · wishlist switch crash from ViewHolder reuse (v0.2.3) · background jobs lost after reboot (v0.2.6 boot receiver + watchdog) · settings surviving uninstall via cloud backup (v0.2.7 `allowBackup=false`) · **icons removed from APK, first-key download dialog, icons persist across updates (v0.3.0)**.
+
+---
+
+## 📦 Release History / 版本历史
+
+All release APKs are versioned under [`roco-merchant-app/dist/`](roco-merchant-app/dist/). 各版本正式签名 APK 均存放于 `roco-merchant-app/dist/`，纳入版本控制。
+
+| Version / 版本 | Highlights / 要点 | APK |
+|---|---|---|
+| **v0.3.0** (current) | Icons no longer bundled — APK keeps the full item-*name* atlas offline; icons download free on demand & persist across updates; one-time dialog after first valid API key · 安装包不含图标（保留全部道具名称离线图鉴）；图标免费按需下载、更新不删除；首次填入正确 API 后弹窗引导 | `RocoMerchant_v0.3.0_release.apk` |
+| **v0.2.7** | Disable auto-start toggle; uninstall fully wipes data (`allowBackup=false`) · 自启动可解除；卸载彻底清除 | `RocoMerchant_v0.2.7_release.apk` |
+| **v0.2.6** | Background reliability: boot receiver, 30-min watchdog, battery-optimization whitelist guide · 后台可靠性专项（开机自恢复/守护/白名单引导） | `RocoMerchant_v0.2.6_release.apk` |
+| **v0.2.5** | Fixed 3 bugs: `data` wrapper parsing, premature "packing up" alert, cross-round items · 修复 3 个真机 Bug（货架 0 件/误报收摊/跨轮次混货） | `RocoMerchant_v0.2.5_release.apk` |
 
 ---
 
@@ -271,6 +298,4 @@ This is an **independent fan project**. It is not affiliated with, endorsed by, 
 
 ## 📄 License / 许可证
 
-Default suggestion: **MIT License** — add a `LICENSE` file in the repository root to make it official (you can do this in one click on GitHub: *Repo → Add file → Create new file → LICENSE → choose MIT*). See the [GitHub docs](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository) for details.
-
-默认建议采用 **MIT 许可证**：在仓库根目录添加 `LICENSE` 文件后正式生效（GitHub 上可一键生成）。详见 [GitHub 官方文档](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)。
+Released under the **MIT License** — see [LICENSE](LICENSE). 本项目以 **MIT 许可证**开源，详见 [LICENSE](LICENSE)。

@@ -342,3 +342,29 @@
 
 --- 
 *产物：`dist/RocoMerchant_v0.2.7_release.apk`（正式签名，46.7 MB）*
+
+---
+
+## 十二、精简安装包：去掉内置图标，图标按需下载（2026-08-29，v0.3.0）
+
+> 需求：① APK 不再包含全部道具图标（安装包更小），但保留全部道具名称；② 用户首次填入正确的 API Key 后，系统弹窗告知图标需在设置中下载；③ 图标下载后保存在本地，软件更新不删除。
+
+### 变更清单（v0.3.0，versionCode 10）
+
+1. **删除内置图标**：移除 `assets/items/`（2499 张 PNG，约 41MB），仅保留 `assets/atlas.json`（全部道具名称图鉴，离线可用）；APK 体积显著减小
+2. **图标加载链精简**：`WikiItemsApi.loadIconBitmap` 只读本地缓存 `files/item_icons/`（不再回退 assets）；删除 `assetIconPath` / `hasBundledIcon` / `bundledIconCount`，新增 `cachedIconCount` 与 `validateKey`
+3. **首次填入正确 API 弹窗引导**（仅一次，`Prefs.iconGuideShown`）：
+   - 设置页保存 Key 后：`WikiItemsApi.validateKey` 拉取 Wiki 图鉴首页 1 条（公共接口，不消耗积分）校验 Key 有效 → 弹窗「🎨 道具图标下载」：**立即下载图标**（直接触发全量同步）/ **稍后再说**
+   - 启动时（MainActivity）：已配置 Key 且本地无任何图标缓存时同样校验并提示，按钮「去设置下载」跳转设置页 —— 覆盖老版本升级用户
+4. **图标更新不删除**：图标缓存位于应用数据目录（`files/item_icons/`），同步只增不删，软件更新（覆盖安装）不丢失；仅卸载时随包清除（符合 v0.2.7 隐私策略）
+5. **文案同步**：设置页图鉴统计改为「已收录 N 件道具 · 本地图标 M 张（未下载时显示名称 + emoji）」；「数据与图片来源」弹窗、`dist/安装说明.txt` 同步更新
+
+### 编译验证
+
+- ✅ `gradlew :app:assembleRelease` 编译通过（JDK 17 / AGP 8.5.2 / Kotlin 1.9.24），产物 `dist/RocoMerchant_v0.3.0_release.apk`（正式签名，versionCode 10 / versionName 0.3.0）
+- ✅ APK assets 校验：仅含 `atlas.json`，无 `items/` 目录（zip 校验通过）
+- ✅ 代码走查：图鉴弹窗/货架/记录页图标加载均走「本地缓存 → 按需下载 → emoji 兜底」，去掉 assets 回退后行为正确
+- ⏳ 待真机补验：首次填 Key 弹窗、图标同步进度、更新后图标保留、卸载清除
+
+---
+*产物：`dist/RocoMerchant_v0.3.0_release.apk`（正式签名，无内置图标）*

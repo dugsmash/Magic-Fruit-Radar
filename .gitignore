@@ -16,10 +16,8 @@ local.properties
 captures/
 .externalNativeBuild/
 .cxx/
-*.apk
 *.aab
 *.aar
-dist/
 
 # --- Local runtime / harness directories ---
 .dsh/

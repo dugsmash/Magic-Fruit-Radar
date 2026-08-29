@@ -33,6 +33,11 @@ class Prefs(context: Context) {
         get() = sp.getBoolean("battery_guide_shown", false)
         set(v) = sp.edit().putBoolean("battery_guide_shown", v).apply()
 
+    /** 是否已展示过「道具图标下载」引导（首次填入正确 API 后提示一次） */
+    var iconGuideShown: Boolean
+        get() = sp.getBoolean("icon_guide_shown", false)
+        set(v) = sp.edit().putBoolean("icon_guide_shown", v).apply()
+
     /** 开机自启动 + 后台守护总开关（默认开；关闭后重启不自动恢复检测、守护任务停止） */
     var autoStart: Boolean
         get() = sp.getBoolean("auto_start", true)

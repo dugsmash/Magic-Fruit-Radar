@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.roco.merchant.data.AtlasRepository
 import com.roco.merchant.data.Prefs
+import com.roco.merchant.data.WikiItemsApi
 import com.roco.merchant.databinding.ActivityMainBinding
 import com.roco.merchant.ui.CatalogFragment
 import com.roco.merchant.ui.RecordFragment
@@ -73,6 +74,9 @@ class MainActivity : AppCompatActivity() {
             WorkScheduler.disableBackground(this)
         }
 
+        // 首次填入正确 API 后的图标下载引导：已配置 Key 且本地无图标时校验并提示（仅一次）
+        maybeGuideIconDownload()
+
         // 调试触发：adb shell am start -n com.roco.merchant/.MainActivity --ez atlas_sync true
         val debuggable = (applicationInfo.flags and android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE) != 0
         if (debuggable && intent?.getBooleanExtra("atlas_sync", false) == true) {
@@ -90,6 +94,41 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, f)
             .commitAllowingStateLoss()
+    }
+
+    /**
+     * 图标下载引导（仅提示一次）：v0.3.0 起 APK 不再内置道具图标，仅内置名称图鉴。
+     * 已配置 Key 且本地无任何图标缓存时，校验 Key 有效后弹窗告知需在设置中下载；
+     * 图标下载后保存在应用数据目录，软件更新不会删除。
+     */
+    private fun maybeGuideIconDownload() {
+        val prefs = Prefs(this)
+        if (prefs.iconGuideShown) return
+        if (prefs.apiKey.isBlank()) return
+        if (WikiItemsApi.cachedIconCount(this) > 0) {
+            prefs.iconGuideShown = true
+            return
+        }
+        lifecycleScope.launch {
+            val valid = WikiItemsApi.validateKey(prefs.baseUrl, prefs.apiKey)
+            if (!valid || prefs.iconGuideShown) return@launch
+            prefs.iconGuideShown = true
+            if (isFinishing || isDestroyed) return@launch
+            MaterialAlertDialogBuilder(this@MainActivity)
+                .setTitle("🎨 道具图标下载")
+                .setMessage(
+                    "安装包仅内置全部道具名称图鉴（离线可用），不包含道具图标。\n\n" +
+                    "请联网下载全部道具图标：\n" +
+                    "设置 →「🔄 立即同步全部图鉴与图片」（公共资源，不消耗积分，约 2 分钟）。\n\n" +
+                    "图标下载后保存在手机本地，软件更新不会删除；\n" +
+                    "未下载的图标将以道具名称 + emoji 显示。"
+                )
+                .setPositiveButton("去设置下载") { _, _ ->
+                    binding.bottomNav.selectedItemId = R.id.nav_settings
+                }
+                .setNegativeButton("稍后再说", null)
+                .show()
+        }
     }
 
     /** 首次运行引导：未加入电池优化白名单时，弹窗引导用户去开启（保证后台检测可靠） */

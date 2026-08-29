@@ -30,7 +30,7 @@ object AtlasRepository {
     /**
      * 1) 分页拉取全部图鉴清单，每页后增量写入 atlas.json（可中断续传）
      *    —— 元数据接口有频率限制（约 1 次/2 秒），逐页间隔拉取，429 时退避重试
-     * 2) 补全缺失图标到 files/item_icons/（内置 assets 已有的跳过；并发，公共资源不限频）
+     * 2) 补全缺失图标到 files/item_icons/（本地缓存已有的跳过；并发，公共资源不限频）
      * 返回进度摘要（已在 IO 线程执行）；失败时 error 字段非空。
      */
     suspend fun sync(ctx: Context, onProgress: (SyncProgress) -> Unit = {}): SyncProgress =
@@ -79,15 +79,14 @@ object AtlasRepository {
                 }
                 val all = AtlasStore.load(ctx)
 
-                // 2) 图标：只补「本地缓存和内置 assets 都没有」的（并发下载）
+                // 2) 图标：只补「本地缓存没有的」（并发下载；APK 不内置图标，全部联网补全）
                 var downloaded = 0
                 var failed = 0
                 val need = all.filter {
                     it.icon.isNotEmpty() &&
-                    !WikiItemsApi.cacheFile(ctx, it.name).exists() &&
-                    !WikiItemsApi.hasBundledIcon(ctx, it.name)
+                    !WikiItemsApi.cacheFile(ctx, it.name).exists()
                 }
-                Log.d(TAG, "清单 " + all.size + " 件 · 待补图标 " + need.size + " 张（内置已覆盖的不重复下载）")
+                Log.d(TAG, "清单 " + all.size + " 件 · 待补图标 " + need.size + " 张（本地已有缓存的不重复下载）")
                 coroutineScope {
                     need.chunked(CONCURRENCY).forEach { chunk ->
                         val results = chunk.map { item ->
