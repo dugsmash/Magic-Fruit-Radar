@@ -373,22 +373,26 @@
 
 ## 十三、更名「魔力果雷达」+ 手绘魔力果图标（2026-08-29，v0.3.1）
 
-> 需求：① 应用更名为「魔力果雷达」；② 启动图标直接使用手绘「魔力果」原图（不再沿用旧星形矢量图标）。
+> 需求：① 应用更名为「魔力果雷达」；② 启动图标直接使用手绘「魔力果」原图（不再沿用旧星形矢量图标），整幅原图铺满图标背景、无打底色。
 
 ### 变更清单（v0.3.1，versionCode 11）
 
 1. **应用更名**：`strings.xml` app_name → 魔力果雷达（桌面图标名、通知归属名随之变更）；设置页各品牌后台白名单指引、安装说明、海报（poster.html）、网页原型、README 同步更新
 2. **启动图标换用原图**：
-   - 手绘魔力果原图（`手绘魔力果.jpeg`，1730×1730，随仓库保留）作为图标素材
+   - 手绘魔力果原图（`手绘魔力果.png`，1828×1828，随仓库保留）作为图标素材，**整幅原图铺满**图标背景，不设打底色
    - 由原图生成 432×432 PNG（`res/mipmap-xxxhdpi/ic_launcher_photo.png`）作为自适应图标背景（`drawable/ic_launcher_bg.xml`，满幅填充，由启动器遮罩裁切）
-   - 前景改为透明（`drawable/ic_launcher_fg.xml` 空矢量）；删除旧 `ic_launcher_foreground.xml` 与 `ic_launcher_background` 颜色
+   - 前景为透明矢量（`drawable/ic_launcher_fg.xml`，含透明圆形路径——**空矢量前景会导致 ColorOS 启动器解析失败、图标降级为默认安卓机器人**，加透明路径后正常）
+   - 删除旧 `ic_launcher_foreground.xml` 与 `ic_launcher_background` 颜色
 3. **版本**：versionCode 11 / versionName 0.3.1；产物 `dist/RocoMerchant_v0.3.1_release.apk`
 
 ### 验证
 
 - ✅ `gradlew :app:assembleRelease` 编译通过（JDK 17 / AGP 8.5.2），正式签名，versionCode 11 / versionName 0.3.1
 - ✅ APK 内图标资源校验：adaptive icon 引用 `ic_launcher_photo.png`（原图生成的 432px PNG）存在
-- ⏳ 待真机补验：桌面图标显示（不同启动器遮罩形状）、更名后通知归属名显示
+- ✅ **OPPO Find X5（PFEM10，Android 16）真机实装验证**（2026-08-29，adb 安装 `RocoMerchant_v0.3.1_release.apk`）：
+  - 空矢量前景版本 → 桌面图标显示默认安卓机器人（ColorOS 无法解析）→ 修复为透明路径前景后，桌面图标正常显示手绘魔力果 ✅
+  - 整幅原图铺满版本安装后，应用名「魔力果雷达」与图标均正常显示；应用启动无闪退（截图像素对比见 `test_shots/42_v031_launch.png`、`test_shots/47_v031_drawer2.png`、`test_shots/46_v031_icon_full.png`）
+- ⏳ 待补验：不同启动器遮罩形状下的图标显示效果
 
 ---
 *产物：`dist/RocoMerchant_v0.3.1_release.apk`（正式签名，更名「魔力果雷达」+ 手绘图标）*

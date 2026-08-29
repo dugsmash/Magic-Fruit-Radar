@@ -92,7 +92,7 @@ luoke-market/
 │   │   └── RocoMerchant_v0.3.1_release.apk    # Renamed 魔力果雷达 + hand-drawn icon
 │   ├── TEST_REPORT.md                         # Test report · 测试报表
 │   └── poster.html                            # Promotional poster (HTML) · 宣传海报
-├── 手绘魔力果.jpeg                            # 🎨 Hand-drawn icon source art · 图标原图
+├── 手绘魔力果.png                            # 🎨 Hand-drawn icon source art · 图标原图
 ├── roco-merchant-prototype/                  # 🎨 Clickable web prototype (zero-dependency)
 │   ├── index.html · app.js · styles.css
 │   ├── preview.png
