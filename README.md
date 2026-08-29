@@ -160,7 +160,7 @@ The app relies on the following third-party service. **No free alternatives with
 
 ## Disclaimer
 
-This is an independent fan project. It is not affiliated with, endorsed by, or connected to Tencent or the official Roco Kingdom: World team in any way. All game item names, data and images belong to their respective owners; merchant rules may change at any time — always verify in game. The data source is a third-party community API; using it may be subject to the service's terms and the game's user agreement.
+This is an independent fan project. It is not affiliated with, endorsed by, or connected to Tencent or the official Roco Kingdom: World team in any way. All game item names, data and images belong to their respective owners; merchant rules may change at any time — always verify in game. The data source is a third-party community API; using it may be subject to the service's terms and the game's user agreement. This project is provided for communication and learning purposes only.
 
 ---
 
