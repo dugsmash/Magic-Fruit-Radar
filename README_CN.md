@@ -5,7 +5,7 @@
 > **《洛克王国：世界》远行商人商品提醒器** —— 把想要的道具加进许愿单，商人上架的那一刻，手机以「消息 + 声音 + 震动」通知你上线抢购，稀有道具不再错过。
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-v0.3.1-blue" alt="version">
+  <img src="https://img.shields.io/badge/version-v0.3.2-blue" alt="version">
   <img src="https://img.shields.io/badge/Android-8.0%2B-green" alt="android">
   <img src="https://img.shields.io/badge/Kotlin-1.9-blueviolet" alt="kotlin">
   <img src="https://img.shields.io/badge/license-MIT-yellow" alt="license">
@@ -23,7 +23,7 @@ App 内置全量道具名称图鉴，共 2500+ 件，完全离线可用；道具
 
 ## 功能特性
 
-### Android 应用 · v0.3.1 · versionCode 11
+### Android 应用 · v0.3.2 · versionCode 12
 
 | 功能 | 说明 |
 |---|---|

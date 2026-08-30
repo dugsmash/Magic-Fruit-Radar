@@ -168,4 +168,13 @@ class Prefs(context: Context) {
     fun setNotified(map: Map<String, Long>) {
         sp.edit().putString("notified", gson.toJson(map)).apply()
     }
+
+    /** 注册 SharedPreferences 变更监听（如后台任务写入新货架缓存后通知货架页即时刷新） */
+    fun registerChangeListener(l: SharedPreferences.OnSharedPreferenceChangeListener) {
+        sp.registerOnSharedPreferenceChangeListener(l)
+    }
+
+    fun unregisterChangeListener(l: SharedPreferences.OnSharedPreferenceChangeListener) {
+        sp.unregisterOnSharedPreferenceChangeListener(l)
+    }
 }

@@ -1,5 +1,6 @@
 package com.roco.merchant.ui
 
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Typeface
@@ -37,6 +38,18 @@ class CatalogFragment : Fragment() {
     private var currentShelfNames: List<String> = emptyList()
     private var countdownTicker: Thread? = null
 
+    /**
+     * 货架缓存变更监听：后台检测任务（MerchantCheckWorker / WatchdogWorker 补检）或
+     * 手动刷新写入新的 `cached_products` 后，本页立即重新拉取并渲染货架，无需切页/重开。
+     * SharedPreferences 回调发生在写入线程（可能是后台线程），需切回主线程再刷新 UI。
+     */
+    private val shelfUpdateListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+        if (key == "cached_products") {
+            val act = activity ?: return@OnSharedPreferenceChangeListener
+            act.runOnUiThread { if (_binding != null) maybeAutoFetch() }
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentCatalogBinding.inflate(inflater, container, false)
         return binding.root
@@ -61,7 +74,8 @@ class CatalogFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, a: Int, b: Int, c: Int) {}
             override fun afterTextChanged(s: android.text.Editable?) {
                 val kw = s?.toString()?.trim() ?: ""
-                val all = if (products.isEmpty()) prefs.getCachedProducts() else products
+                // 始终以最新缓存为准（后台任务更新后内存列表可能滞后）
+                val all = prefs.getCachedProducts()
                 val names = all.map { it.displayName }.filter { kw.isEmpty() || it.contains(kw) }.distinct()
                 renderList(names, if (kw.isEmpty()) "筛选：全部" else "筛选：「" + kw + "」")
             }
@@ -72,7 +86,8 @@ class CatalogFragment : Fragment() {
         binding.catalogInfo.text = if (force) "正在手动刷新货架…" else "商人本轮已刷新，正在自动获取…"
         lifecycleScope.launch {
             val result = MerchantChecker.check(requireContext(), force = force)
-            binding.catalogInfo.text = result.message
+            val b = _binding ?: return@launch // 页面已销毁则丢弃结果，避免空指针
+            b.catalogInfo.text = result.message
             if (result.products.isNotEmpty()) {
                 products = result.products
                 renderList(products.map { it.displayName }.distinct(), result.message)
@@ -108,15 +123,17 @@ class CatalogFragment : Fragment() {
         maybeUrgentNotify()
     }
 
+    /** 每次进入/缓存变更时都重新读取最新缓存货架（修复后台任务更新后货架不刷新的问题） */
     private fun loadCached() {
-        if (products.isEmpty()) products = prefs.getCachedProducts()
+        products = prefs.getCachedProducts()
     }
 
     /** 商品列表：洛克魔法书图鉴原图 + 名称（渐变/红/黑）+ 抢到 */
     private fun renderList(names: List<String>, info: String) {
-        binding.catalogInfo.text = info
+        val b = _binding ?: return
+        b.catalogInfo.text = info
         currentShelfNames = names.distinct()
-        val container = binding.shelfContainer
+        val container = b.shelfContainer
         container.removeAllViews()
         if (currentShelfNames.isEmpty()) {
             val tv = TextView(requireContext()).apply {
@@ -310,12 +327,16 @@ class CatalogFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (::prefs.isInitialized) maybeAutoFetch()
+        if (::prefs.isInitialized) {
+            maybeAutoFetch()
+            prefs.registerChangeListener(shelfUpdateListener)
+        }
         startTicker()
     }
 
     override fun onPause() {
         super.onPause()
+        if (::prefs.isInitialized) prefs.unregisterChangeListener(shelfUpdateListener)
         countdownTicker?.interrupt()
         countdownTicker = null
     }

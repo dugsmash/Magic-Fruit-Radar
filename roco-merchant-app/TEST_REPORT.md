@@ -397,3 +397,38 @@
 
 ---
 *产物：`dist/MagicFruitRadar_v0.3.1_release.apk`（正式签名，更名「魔力果雷达」+ 手绘图标）*
+
+---
+
+## 十四、修复：货架获取到新商品信息后未能及时更新（2026-08-29，v0.3.2）
+
+> 问题：后台检测任务（MerchantCheckWorker / WatchdogWorker 补检）已成功获取到新一轮货架并写入缓存，但「货架」页仍显示旧商品，需要退出重进甚至手动刷新才更新。
+
+### 根因（v0.3.2，versionCode 12）
+
+1. **进入货架页时复用内存旧列表**：`loadCached()` 仅在 `products` 为空时才从缓存读取；Fragment 实例常驻（MainActivity 持有单例），切页/切后台再回来时 `products` 非空 → 一直渲染旧数据
+2. **货架页可见期间无任何通知机制**：后台任务写入 `cached_products` 后，货架页收不到变更事件，不会重新渲染
+3. **搜索筛选同样命中旧内存列表**：`products.isEmpty() ? 缓存 : products` 在内存列表非空时永远走旧数据
+4. 附带隐患：`fetch()` 协程在页面销毁后仍访问 `binding` → 空指针风险
+
+### 变更清单
+
+1. `CatalogFragment.kt`：
+   - `loadCached()` 改为**每次都重新读取最新缓存**（`products = prefs.getCachedProducts()`）
+   - 新增 `SharedPreferences.OnSharedPreferenceChangeListener` 监听 `cached_products` 键：
+     后台任务/手动刷新写入新货架后，货架页**立即**重渲染（回调可能在后台线程，经 `runOnUiThread` 切回主线程；`onPause` 注销、`onResume` 注册）
+   - 搜索筛选改为始终读取最新缓存
+   - `fetch()` 与 `renderList()` 增加 `_binding` 空安全守卫，页面销毁后丢弃结果不再崩溃
+2. `Prefs.kt`：新增 `registerChangeListener` / `unregisterChangeListener` 便捷方法
+3. 版本：versionCode 12 / versionName 0.3.2；产物 `dist/MagicFruitRadar_v0.3.2_release.apk`
+
+### 验证
+
+- ✅ `gradlew :app:assembleRelease` 编译通过（JDK 17 / AGP 8.5.2），正式签名，versionCode 12 / versionName 0.3.2
+- ✅ 场景 1（切页后展示新货架）：后台任务写入新缓存 → 切到「货架」页 → 立即显示新商品（原逻辑显示旧商品）
+- ✅ 场景 2（货架页可见时后台更新）：货架页停留中由 Worker 写入新缓存 → 货架即时刷新为最新商品
+- ✅ 场景 3（休市时段）：缓存变更回调走 `maybeAutoFetch()`，仍正确显示「前一日货架回顾」
+- ✅ 搜索筛选跟随最新缓存；页面销毁后返回不崩溃
+
+---
+*产物：`dist/MagicFruitRadar_v0.3.2_release.apk`（正式签名，货架及时刷新修复）*
